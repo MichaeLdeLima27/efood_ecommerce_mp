@@ -1,18 +1,15 @@
+import { Imagem, Titulo } from './styles'
 
-import React from 'react';
-import { Imagem, Titulo, Precos } from './styles';
+import bannerImg from '../../assets/images/banner.png'
 
 const Banner = () => (
-  <Imagem>
+  <Imagem style={{ backgroundImage: `url(${bannerImg})` }}>
     <div className="container">
       <Titulo>
-        <h2>Template title</h2>
+        <h2></h2>
       </Titulo>
-      <Precos>
-        <p>R$ <span>100,00</span></p>
-      </Precos>
     </div>
   </Imagem>
 )
 
-export default Banner;
+export default Banner

@@ -1,6 +1,4 @@
-
 import { Routes, Route } from 'react-router-dom'
-
 
 import Home from './pages/Home'
 
@@ -10,4 +8,4 @@ const Rotas = () => (
   </Routes>
 )
 
-export default Rotas;
+export default Rotas

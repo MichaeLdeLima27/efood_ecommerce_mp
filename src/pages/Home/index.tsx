@@ -1,9 +1,13 @@
-import React from 'react';
+import Banner from '../../components/Banner'
 
 const Home = () => (
   <>
-    <h1>Home</h1>
+    <Banner />
+    <div className="container">
+      <h1>Welcome to the Template</h1>
+      <p>This is a sample home page.</p>
+    </div>
   </>
 )
 
-export default Home;
+export default Home
