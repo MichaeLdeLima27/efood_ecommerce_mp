@@ -20,8 +20,7 @@ const ProductsList = ({ background, title, menus }: Props) => (
             category={menu.category}
             description={menu.description}
             image={menu.image}
-            infos={menu.infos}
-            system={menu.system}
+            rating={menu.rating}
             title={menu.title}
           />
         ))}
