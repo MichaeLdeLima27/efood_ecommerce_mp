@@ -3,9 +3,12 @@ import { createGlobalStyle } from 'styled-components'
 export const Colors = {
   white: '#eee',
   black: '#111',
-  gray: '#333',
+  gray: '#ffebd9',
   lightGray: '#A3A3A3',
-  green: '#10AC84'
+  mainPink: '#E66767',
+  darkPink: '#FFEBD9',
+  green: '#10AC84',
+  background: '#FFFFFF'
 }
 
 export const GlobalCss = createGlobalStyle`

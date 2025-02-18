@@ -1,42 +1,40 @@
 import Banner from '../../components/Banner'
 import ProductsList from '../../components/ProductsList'
-import Game from '../../models/Games'
+import Menu from '../../models/Menu'
 
-import resident from '../../assets/images/resident.png'
-import diablo from '../../assets/images/diablo.png'
-import zelda from '../../assets/images/zelda.png'
-import starWars from '../../assets/images/star_wars.png'
+import pasta from '../../assets/images/pasta.png'
+import pizza from '../../assets/images/pizza.png'
+import sushi from '../../assets/images/sushi.png'
 
-const promocoes: Game[] = [
+
+const promocoes: Menu[] = [
   {
     id: 1,
-    category: 'Ação',
+    category: 'Japonesa',
     description:
-      'Resident Evil 4, conhecido no Japão como Biohazard 4, é um jogo eletrônico de survival horror...',
-    title: 'Resident Evil 4',
-    system: 'Windows',
-    infos: ['10%', 'R$ 250,00'],
-    image: resident
+      'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis...',
+    title: 'Hioki Sushi',
+    rating: 4.9,
+    image: sushi
   },
   {
     id: 2,
-    category: 'Ação',
+    category: 'Italiana',
     description:
-      'Resident Evil 4, conhecido no Japão como Biohazard 4, é um jogo eletrônico de survival horror...',
-    title: 'Resident Evil 4',
-    system: 'PS5',
-    infos: ['5%', 'R$ 290,00'],
-    image: resident
+      'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas...',
+    title: 'La Dolce Vita Trattoria',
+    rating: 4.6,
+    image: pasta
   },
   {
     id: 3,
-    category: 'Ação',
+    category: 'Italiana',
     description:
-      'Resident Evil 4, conhecido no Japão como Biohazard 4, é um jogo eletrônico de survival horror...',
-    title: 'Resident Evil 4',
+      '',
+    title: 'Pizza C',
     system: 'Windows',
     infos: ['10%', 'R$ 250,00'],
-    image: resident
+    image: pizza
   },
   {
     id: 4,
@@ -50,7 +48,7 @@ const promocoes: Game[] = [
   }
 ]
 
-const emBreve: Game[] = [
+const emBreve: Menu[] = [
   {
     id: 5,
     category: 'RPG',
@@ -97,12 +95,12 @@ const Home = () => (
   <>
     <Banner />
     <ProductsList
-      games={promocoes}
+      menus={promocoes}
       title="Exemplo de Promoções"
       background="gray"
     />
     <ProductsList
-      games={emBreve}
+      menus={emBreve}
       title="Exemplo de Em breve"
       background="black"
     />

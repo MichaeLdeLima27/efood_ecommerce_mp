@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom'
 import { Colors } from '../../styles'
 
 export const ButtonContainer = styled.button`
-  border: 2px solid ${Colors.white};
-  color: ${Colors.white};
+  border: 2px solid ${Colors.mainPink};
+  color: ${Colors.darkPink};
   background-color: transparent;
   font-size: 16px;
   font-weight: bold;
@@ -14,8 +14,8 @@ export const ButtonContainer = styled.button`
 `
 
 export const ButtonLink = styled(Link)`
-  border: 2px solid ${Colors.white};
-  color: ${Colors.white};
+  border: 2px solid ${Colors.mainPink};
+  color: ${Colors.darkPink};
   background-color: transparent;
   font-size: 16px;
   font-weight: bold;
