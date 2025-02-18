@@ -6,7 +6,7 @@ const Footer = () => (
   <Container>
     <div className="container">
       <FooterSection>
-        <SectionTitle>Links</SectionTitle>
+        <SectionTitle>Exemplo de Links de rodapé</SectionTitle>
         <Links>
           <Link href="#">Home</Link>
           <Link href="#">Sobre</Link>

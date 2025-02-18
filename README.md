@@ -24,7 +24,7 @@ This template is designed to jumpstart your React projects with a robust, produc
 
 ## 🖼️ Project Demo
 
-![Project Demo](https://github.com/maxh33/max-react-template/blob/main/public/demo.png)
+![Project Demo](https://github.com/maxh33/max-react-template/blob/main/public/demo.gif)
 
 ## 🚀 Quick Start
 
@@ -93,21 +93,30 @@ This template is designed to jumpstart your React projects with a robust, produc
 
 ## 📂 Project Structure
 
-src/
-├── assets/
-│ └── images/
-├── components/
-│ ├── Banner/
-│ ├── Button/
-│ ├── Footer/
-│ └── Header/
-├── pages/
-│ ├── Home/
-│ └── Others/
-├── styles.ts
-├── App.tsx
-├── index.tsx
-└── routes.tsx
+### Root Directory
+- `src/` - Source code directory
+
+### Assets
+- `assets/`
+  - `images/` - Image resources
+
+### Components
+- `components/`
+  - `Banner/` - Banner component
+  - `Button/` - Button component
+  - `Footer/` - Footer component
+  - `Header/` - Header component
+
+### Pages
+- `pages/`
+  - `Home/` - Home page
+  - `Others/` - Other pages
+
+### Core Files
+- `styles.ts` - Global styles
+- `App.tsx` - Main application component
+- `index.tsx` - Entry point
+- `routes.tsx` - Route definitions
 
 
 ## Getting Started with Create React App
