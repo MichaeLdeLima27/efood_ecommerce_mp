@@ -24,7 +24,7 @@ This template is designed to jumpstart your React projects with a robust, produc
 
 ## 🖼️ Project Demo
 
-![Project Demo](https://github.com/maxh33/max-react-template/blob/main/public/demo.gif)
+![Project Demo](https://github.com/maxh33/max-react-template/blob/main/public/demo.png)
 
 ## 🚀 Quick Start
 
