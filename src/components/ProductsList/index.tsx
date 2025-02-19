@@ -1,18 +1,16 @@
 import Menu from '../../models/Menu'
 import Product from '../Product'
-
-import { Container, List } from './styles'
+import { Container, List, Title } from './styles'
 
 export type Props = {
   title: string
-  background: 'gray' | 'black'
   menus: Menu[]
 }
 
-const ProductsList = ({ background, title, menus }: Props) => (
-  <Container background={background}>
+const ProductsList = ({ title, menus }: Props) => (
+  <Container>
     <div className="container">
-      <h2>{title}</h2>
+      <Title>{title}</Title>
       <List>
         {menus.map((menu) => (
           <Product
@@ -22,6 +20,7 @@ const ProductsList = ({ background, title, menus }: Props) => (
             image={menu.image}
             rating={menu.rating}
             title={menu.title}
+            isHighlight={menu.isHighlight}
           />
         ))}
       </List>

@@ -1,14 +1,14 @@
 import { createGlobalStyle } from 'styled-components'
 
 export const Colors = {
-  white: '#eee',
+  white: '#FFFFFF',
   black: '#111',
   gray: '#ffebd9',
   lightGray: '#A3A3A3',
   mainPink: '#E66767',
   darkPink: '#FFEBD9',
   green: '#10AC84',
-  background: '#FFFFFF'
+  background: '#FFF8F2'
 }
 
 export const GlobalCss = createGlobalStyle`

@@ -5,6 +5,7 @@ class Menu {
   category: string
   image: string
   rating: number
+  isHighlight: boolean
 
   constructor(
     id: number,
@@ -12,7 +13,8 @@ class Menu {
     description: string,
     category: string,
     image: string,
-    rating: number
+    rating: number,
+    isHighlight: boolean
   ) {
     this.id = id
     this.title = title
@@ -20,6 +22,7 @@ class Menu {
     this.category = category
     this.image = image
     this.rating = rating
+    this.isHighlight = isHighlight
   }
 }
 
