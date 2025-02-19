@@ -36,6 +36,36 @@ const restaurantes: Menu[] = [
       'As melhores pizzas artesanais com ingredientes importados da Itália. Massa fina e crocante, molho de tomate caseiro e coberturas generosas.',
     image: pizza,
     rating: 4.7
+  },
+  {
+    id: 4,
+    title: 'Sushi & Roll',
+    isHighlight: false,
+    category: 'Japonesa',
+    description:
+      'Deliciosos pratos de sushi e rolls frescos, com peixes marinhos e vegetais selecionados. Entrega rápida, embalagens cuidadosas e sabor inesquecível. Peça já!',
+    image: sushi,
+    rating: 4.8
+  },
+  {
+    id: 5,
+    title: 'Pizzaria Bella Napoli',
+    isHighlight: false,
+    category: 'Italiana',
+    description:
+      'As melhores pizzas artesanais com ingredientes importados da Itália. Massa fina e crocante, molho de tomate caseiro e coberturas generosas.',
+    image: pizza,
+    rating: 4.7
+  },
+  {
+    id: 6,
+    title: 'Sushi & Roll',
+    isHighlight: false,
+    category: 'Japonesa',
+    description:
+      'Deliciosos pratos de sushi e rolls frescos, com peixes marinhos e vegetais selecionados. Entrega rápida, embalagens cuidadosas e sabor inesquecível. Peça já!',
+    image: sushi,
+    rating: 4.8
   }
 ]
 
