@@ -7,9 +7,8 @@ import star from '../../assets/images/estrela.png'
 export const Card = styled.div`
   background-color: ${Colors.white};
   border: 1px solid ${Colors.mainPink};
-  border-radius: 8px;
+  border-radius: 2px;
   position: relative;
-  padding-bottom: 12px;
 
   > img {
     width: 100%;
@@ -58,7 +57,7 @@ export const Descricao = styled.p`
   font-size: 14px;
   line-height: 22px;
   color: ${Colors.mainPink};
-  margin: 8px 0;
+  margin: 8px 8px;
   height: 88px;
   overflow: hidden;
   text-overflow: ellipsis;

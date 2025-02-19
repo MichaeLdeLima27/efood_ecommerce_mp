@@ -10,6 +10,7 @@ const restaurantes: Menu[] = [
   {
     id: 1,
     title: 'Hioki Sushi',
+    isHighlight: true,
     category: 'Japonesa',
     description:
       'Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida.',
@@ -19,6 +20,7 @@ const restaurantes: Menu[] = [
   {
     id: 2,
     title: 'La Dolce Vita Trattoria',
+    isHighlight: false,
     category: 'Italiana',
     description:
       'A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!',
@@ -28,6 +30,7 @@ const restaurantes: Menu[] = [
   {
     id: 3,
     title: 'Pizzaria Bella Napoli',
+    isHighlight: false,
     category: 'Italiana',
     description:
       'As melhores pizzas artesanais com ingredientes importados da Itália. Massa fina e crocante, molho de tomate caseiro e coberturas generosas.',
@@ -39,11 +42,7 @@ const restaurantes: Menu[] = [
 const Home = () => (
   <>
     <Banner />
-    <ProductsList
-      menus={restaurantes}
-      title="Restaurantes em destaque"
-      background="gray"
-    />
+    <ProductsList menus={restaurantes} title={''} />
   </>
 )
 
