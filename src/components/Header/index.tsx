@@ -7,7 +7,7 @@ import cart from '../../assets/images/shopping-cart.svg'
 const Header = () => (
   <HeaderBar>
     <div>
-      <img src={logo} alt="Max Template Logo" />
+      <img src={logo} alt="Logo" />
       <nav>
         <Links>
           <LinkItem>

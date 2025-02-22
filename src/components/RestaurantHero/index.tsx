@@ -19,7 +19,7 @@ const RestaurantHero = ({ type, name }: Props) => {
     <HeroContainer>
       <HeroBackground style={{ backgroundImage: `url(${heroBackground})` }} />
       <HeroContent>
-        <RestaurantType>{type}</RestaurantType>
+        <RestaurantType className="restaurant-type">{type}</RestaurantType>
         <RestaurantName>{name}</RestaurantName>
       </HeroContent>
     </HeroContainer>

@@ -1,3 +1,4 @@
+import RestaurantHeader from '../../components/RestaurantHeader'
 import RestaurantHero from '../../components/RestaurantHero'
 import MenuList from '../../components/MenuList'
 
@@ -49,6 +50,7 @@ const mockMenuItems = [
 const RestaurantDetails = () => {
   return (
     <>
+      <RestaurantHeader />
       <RestaurantHero
         type="Italiana"
         name="La Dolce Vita Trattoria"

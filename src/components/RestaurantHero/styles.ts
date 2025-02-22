@@ -6,7 +6,6 @@ export const HeroContainer = styled.div`
   height: 280px;
   position: relative;
   background-color: rgba(0, 0, 0, 0.5);
-  margin-top: 162px;
 `
 
 export const HeroBackground = styled.div`
@@ -28,9 +27,12 @@ export const HeroContent = styled.div`
 
 export const RestaurantType = styled.h2`
   font-size: 32px;
-  font-weight: 100;
   color: ${Colors.white};
   margin-bottom: 156.5px;
+
+  &.restaurant-type {
+    font-weight: 100;
+  }
 `
 
 export const RestaurantName = styled.h1`

@@ -5,7 +5,6 @@ export const Container = styled.div`
   position: relative;
   width: 100%;
   height: 384px;
-  margin-top: -24px;
 `
 
 export const Imagem = styled.div`
@@ -22,7 +21,7 @@ export const Logo = styled.img`
   height: 57.5px;
   left: 50%;
   transform: translateX(-50%);
-  top: 40px;
+  margin-top: 40px;
   background: ${Colors.mainPink};
 `
 
