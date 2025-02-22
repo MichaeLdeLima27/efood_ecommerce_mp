@@ -5,7 +5,7 @@ export const HeaderBar = styled.header`
   background-color: ${Colors.gray};
   padding: 24px;
   border-radius: 16px;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
   display: flex;
   align-items: center;
   justify-content: space-between;

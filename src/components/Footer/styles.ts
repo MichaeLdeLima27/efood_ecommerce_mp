@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { Colors } from '../../styles'
 
 export const Container = styled.footer`
-  background-color: ${Colors.darkPink};
+  background-color: ${Colors.lightPink};
   height: 298px;
   padding: 40px 0;
   position: relative;

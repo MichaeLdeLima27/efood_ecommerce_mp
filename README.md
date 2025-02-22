@@ -24,7 +24,7 @@ This template is designed to jumpstart your React projects with a robust, produc
 
 ## 🖼️ Project Demo
 
-![Project Demo](https://github.com/maxh33/max-react-template/blob/main/public/demo.png)
+![Project Demo](https://github.com/maxh33/food-ecommerce/blob/main/public/demo.png)
 
 ## 🚀 Quick Start
 
@@ -36,10 +36,10 @@ This template is designed to jumpstart your React projects with a robust, produc
 
 1. Clone the repository
 
-`git clone https://github.com/maxh33/max-react-template.git`
+`git clone https://github.com/maxh33/food-ecommerce.git`
 
 
-`cd max-template`
+`cd food-ecommerce`
 
 2. Install dependencies
 

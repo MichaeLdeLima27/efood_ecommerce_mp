@@ -15,7 +15,7 @@ export const ButtonContainer = styled.button<{
     padding: 4px 0;
     border: none;
     background-color: ${Colors.mainPink};
-    color: ${Colors.darkPink};
+    color: ${Colors.lightPink};
     font-weight: bold;
     font-size: 14px;
     cursor: pointer;
@@ -26,7 +26,7 @@ export const ButtonContainer = styled.button<{
     width: 82px;
     height: 24px;
     border: 2px solid ${Colors.mainPink};
-    color: ${Colors.darkPink};
+    color: ${Colors.lightPink};
     background-color: ${Colors.mainPink};
     margin: 8px 8px;
     font-size: 12px;
@@ -38,7 +38,7 @@ export const ButtonContainer = styled.button<{
 
 export const ButtonLink = styled(Link)`
   border: 2px solid ${Colors.mainPink};
-  color: ${Colors.darkPink};
+  color: ${Colors.lightPink};
   background-color: transparent;
   font-size: 16px;
   font-weight: bold;

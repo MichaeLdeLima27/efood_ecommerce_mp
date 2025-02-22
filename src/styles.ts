@@ -6,7 +6,7 @@ export const Colors = {
   gray: '#ffebd9',
   lightGray: '#A3A3A3',
   mainPink: '#E66767',
-  darkPink: '#FFEBD9',
+  lightPink: '#FFEBD9',
   green: '#10AC84',
   background: '#FFF8F2'
 }
@@ -23,7 +23,6 @@ export const GlobalCss = createGlobalStyle`
     body {
         background-color: ${Colors.black};
         color: ${Colors.white};
-        padding-top: 40px;
     }
 
     .container{
