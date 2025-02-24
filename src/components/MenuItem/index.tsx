@@ -1,19 +1,18 @@
-import { Card, Title, Description } from './styles'
-
-import pizzaImage from '../../assets/images/pizza.png'
+import { Card, Title, Description, Button } from './styles'
 
 type Props = {
   title: string
   description: string
   image: string
+  onClick: () => void
 }
 
-const MenuItem = ({ title, description }: Props) => (
+const MenuItem = ({ title, description, image, onClick }: Props) => (
   <Card>
-    <img src={pizzaImage} alt={title} />
+    <img src={image} alt={title} />
     <Title>{title}</Title>
     <Description>{description}</Description>
-    <button>Adicionar ao carrinho</button>
+    <Button onClick={onClick}>Mais detalhes</Button>
   </Card>
 )
 

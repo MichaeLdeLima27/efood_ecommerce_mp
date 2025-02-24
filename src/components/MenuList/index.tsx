@@ -1,26 +1,22 @@
 import MenuItem from '../MenuItem'
 import { Container, List } from './styles'
-
-type MenuItemType = {
-  id: number
-  title: string
-  description: string
-  image: string
-}
+import { MenuItem as MenuItemType } from '../../models/Menu'
 
 type Props = {
   items: MenuItemType[]
+  onItemClick: (item: MenuItemType) => void
 }
 
-const MenuList = ({ items }: Props) => (
+const MenuList = ({ items, onItemClick }: Props) => (
   <Container>
     <List>
       {items.map((item) => (
         <MenuItem
           key={item.id}
-          title={item.title}
-          description={item.description}
-          image={item.image}
+          title={item.nome}
+          description={item.descricao}
+          image={item.foto}
+          onClick={() => onItemClick(item)}
         />
       ))}
     </List>

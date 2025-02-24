@@ -5,22 +5,15 @@ export const Card = styled.div`
   background-color: ${Colors.mainPink};
   padding: 8px;
   width: 320px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 
   img {
     width: 304px;
     height: 167px;
     object-fit: cover;
-  }
-
-  button {
-    width: 100%;
-    background-color: ${Colors.lightPink};
-    color: ${Colors.mainPink};
-    font-weight: 700;
-    font-size: 14px;
-    padding: 4px 0;
-    border: none;
-    cursor: pointer;
+    border-radius: 8px;
   }
 `
 
@@ -36,4 +29,23 @@ export const Description = styled.p`
   line-height: 22px;
   color: ${Colors.lightPink};
   margin-bottom: 8px;
+  flex-grow: 1;
+`
+
+export const Button = styled.button`
+  width: 100%;
+  background-color: ${Colors.lightPink};
+  color: ${Colors.mainPink};
+  font-weight: 700;
+  font-size: 14px;
+  padding: 4px 0;
+  border: none;
+  margin-top: auto;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: ${Colors.lightPink};
+    color: ${Colors.mainPink};
+  }
 `
