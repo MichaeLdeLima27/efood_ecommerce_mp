@@ -11,7 +11,7 @@ const capitalize = (str: string) => {
 }
 
 const RestaurantDetails = () => {
-  const { id } = useParams<{ id: string }>()
+  const { tipo } = useParams<{ tipo: string }>()
   const [restaurant, setRestaurant] = useState<Restaurant>()
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null)
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -20,10 +20,10 @@ const RestaurantDetails = () => {
     fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
       .then((res) => res.json())
       .then((res) => {
-        const foundRestaurant = res.find((r: Restaurant) => r.id === Number(id))
+        const foundRestaurant = res.find((r: Restaurant) => r.tipo === tipo)
         setRestaurant(foundRestaurant)
       })
-  }, [id])
+  }, [tipo])
 
   const handleOpenModal = (item: MenuItem) => {
     setSelectedItem(item)

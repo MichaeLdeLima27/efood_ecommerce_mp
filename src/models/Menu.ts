@@ -18,7 +18,7 @@ export interface Restaurant {
   cardapio: MenuItem[]
 }
 
-class Menu {
+export interface Menu {
   id: number
   title: string
   description: string
@@ -26,24 +26,5 @@ class Menu {
   image: string
   rating: number
   isHighlight: boolean
-
-  constructor(
-    id: number,
-    title: string,
-    description: string,
-    category: string,
-    image: string,
-    rating: number,
-    isHighlight: boolean
-  ) {
-    this.id = id
-    this.title = title
-    this.description = description
-    this.category = category
-    this.image = image
-    this.rating = rating
-    this.isHighlight = isHighlight
-  }
+  tipo: string
 }
-
-export default Menu

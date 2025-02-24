@@ -1,4 +1,4 @@
-import Menu from '../../models/Menu'
+import { Menu } from '../../models/Menu'
 import Product from '../Product'
 import { Container, List, Title } from './styles'
 
@@ -21,6 +21,7 @@ const ProductsList = ({ title, menus }: Props) => (
             rating={menu.rating}
             title={menu.title}
             isHighlight={menu.isHighlight}
+            tipo={menu.tipo}
           />
         ))}
       </List>
