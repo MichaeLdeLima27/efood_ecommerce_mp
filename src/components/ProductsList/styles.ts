@@ -3,19 +3,15 @@ import { Colors } from '../../styles'
 import { Card } from '../Product/styles'
 
 export const Container = styled.section`
-  padding: 80px 0;
   background-color: ${Colors.background};
-  .container {
-    width: 1024px;
-    margin: 0 auto;
-  }
+  padding: 80px 0;
+  padding-bottom: 120px;
 `
 
 export const List = styled.ul`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 48px;
-  margin-top: 80px;
   list-style: none;
   padding: 0;
 

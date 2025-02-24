@@ -3,7 +3,8 @@ import { Colors } from '../../styles'
 
 export const Container = styled.div`
   background-color: ${Colors.background};
-  padding: 80px 0;
+  padding-top: 56px;
+  padding-bottom: 120px;
 `
 
 export const List = styled.div`
