@@ -1,4 +1,6 @@
 import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { addItem, openCart } from '../../store/reducers/cart'
 import {
   Container,
   ModalContent,
@@ -15,6 +17,8 @@ type Props = {
 }
 
 const Modal = ({ menuItem, isOpen, onClose }: Props) => {
+  const dispatch = useDispatch()
+
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
       if (event.key === 'Escape') onClose()
@@ -27,6 +31,12 @@ const Modal = ({ menuItem, isOpen, onClose }: Props) => {
     }
   }, [onClose])
 
+  const handleAddToCart = () => {
+    dispatch(addItem(menuItem))
+    dispatch(openCart())
+    onClose()
+  }
+
   if (!isOpen) return null
 
   return (
@@ -38,11 +48,7 @@ const Modal = ({ menuItem, isOpen, onClose }: Props) => {
           <h2>{menuItem.nome}</h2>
           <p>{menuItem.descricao}</p>
           <p>Serve: de {menuItem.porcao}</p>
-          <button
-            onClick={() => {
-              /* to do cart logic */
-            }}
-          >
+          <button onClick={handleAddToCart}>
             Adicionar ao carrinho - R$ {menuItem.preco.toFixed(2)}
           </button>
         </ProductInfo>
