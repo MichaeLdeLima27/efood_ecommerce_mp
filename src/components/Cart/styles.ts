@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Colors } from '../../styles'
+import { Colors, breakpoints } from '../../styles'
 
 export const CartContainer = styled.div`
   position: fixed;
@@ -9,7 +9,7 @@ export const CartContainer = styled.div`
   height: 100%;
   display: flex;
   justify-content: flex-end;
-  z-index: 1;
+  z-index: 10;
 `
 
 export const CartOverlay = styled.div`
@@ -28,6 +28,10 @@ export const CartContent = styled.div`
   z-index: 1;
   overflow-y: auto;
   position: relative;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 80%;
+  }
 `
 
 export const CartItem = styled.div`
@@ -44,6 +48,12 @@ export const CartItemContent = styled.div`
   display: flex;
   background-color: ${Colors.lightPink};
   color: ${Colors.mainPink};
+
+  @media (max-width: ${breakpoints.mobile}) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
 `
 
 export const ItemImage = styled.img`
@@ -51,16 +61,30 @@ export const ItemImage = styled.img`
   height: 80px;
   object-fit: cover;
   margin-right: 8px;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
 `
 
 export const ItemInfo = styled.div`
   flex: 1;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 100%;
+  }
 `
 
 export const ItemTitle = styled.h3`
   font-weight: 900;
   font-size: 18px;
   margin-bottom: 16px;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
 `
 
 export const ItemPrice = styled.p`

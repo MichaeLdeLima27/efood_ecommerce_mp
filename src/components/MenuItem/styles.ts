@@ -1,19 +1,28 @@
 import styled from 'styled-components'
-import { Colors } from '../../styles'
+import { Colors, breakpoints } from '../../styles'
 
 export const Card = styled.div`
   background-color: ${Colors.mainPink};
   padding: 8px;
-  width: 320px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   height: 100%;
+  border-radius: 8px;
 
   img {
-    width: 304px;
+    width: 100%;
     height: 167px;
     object-fit: cover;
     border-radius: 8px;
+
+    @media (max-width: ${breakpoints.mobile}) {
+      height: 150px;
+    }
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    padding: 8px;
   }
 `
 
@@ -30,6 +39,11 @@ export const Description = styled.p`
   color: ${Colors.lightPink};
   margin-bottom: 8px;
   flex-grow: 1;
+
+  @media (max-width: ${breakpoints.mobile}) {
+    font-size: 13px;
+    line-height: 20px;
+  }
 `
 
 export const Button = styled.button`
@@ -45,7 +59,7 @@ export const Button = styled.button`
   transition: all 0.2s ease;
 
   &:hover {
-    background-color: ${Colors.lightPink};
+    background-color: ${Colors.white};
     color: ${Colors.mainPink};
   }
 `

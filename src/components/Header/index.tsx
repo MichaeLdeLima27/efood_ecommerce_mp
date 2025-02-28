@@ -1,11 +1,17 @@
 import { Link } from 'react-router-dom'
-import { HeaderBar, LinkCart, Links, LinkItem } from './styles'
+import {
+  HeaderBar,
+  HeaderContent,
+  LinkCart,
+  Links,
+  LinkItem,
+  LogoContainer
+} from './styles'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store'
 import { openCart } from '../../store/reducers/cart'
 
 import logo from '../../assets/images/logo.svg'
-import cart from '../../assets/images/shopping-cart.svg'
 
 const Header = () => {
   const { items } = useSelector((state: RootState) => state.cart)
@@ -18,22 +24,21 @@ const Header = () => {
 
   return (
     <HeaderBar>
-      <div>
-        <Link to="/">
-          <img src={logo} alt="Logo" />
-        </Link>
-        <nav>
-          <Links>
-            <LinkItem>
-              <Link to="/">Restaurantes</Link>
-            </LinkItem>
-          </Links>
-        </nav>
-      </div>
-      <LinkCart href="/cart" onClick={handleCartClick}>
-        {items.length} produto(s) no carrinho
-        <img src={cart} alt="Carrinho de compras" />
-      </LinkCart>
+      <HeaderContent>
+        <Links>
+          <LinkItem>
+            <Link to="/">Restaurantes</Link>
+          </LinkItem>
+        </Links>
+        <LogoContainer>
+          <Link to="/">
+            <img className="logo" src={logo} alt="Logo" />
+          </Link>
+        </LogoContainer>
+        <LinkCart href="#" onClick={handleCartClick}>
+          {items.length} produto(s) no carrinho
+        </LinkCart>
+      </HeaderContent>
     </HeaderBar>
   )
 }
