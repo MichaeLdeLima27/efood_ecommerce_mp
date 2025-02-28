@@ -1,10 +1,18 @@
 import styled from 'styled-components'
-import { Colors } from '../../styles'
+import { Colors, breakpoints } from '../../styles'
 
 export const Container = styled.div`
   position: relative;
   width: 100%;
   height: 384px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    height: 320px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    height: 280px;
+  }
 `
 
 export const Imagem = styled.div`
@@ -23,12 +31,19 @@ export const Logo = styled.img`
   transform: translateX(-50%);
   margin-top: 40px;
   background: ${Colors.mainPink};
+
+  @media (max-width: ${breakpoints.mobile}) {
+    width: 100px;
+    height: 46px;
+    margin-top: 30px;
+  }
 `
 
 export const Titulo = styled.h1`
   position: absolute;
-  width: 539px;
-  height: 84px;
+  max-width: 539px;
+  width: 90%;
+  height: auto;
   left: 50%;
   transform: translateX(-50%);
   top: 236px;
@@ -40,4 +55,16 @@ export const Titulo = styled.h1`
   line-height: 42px;
   text-align: center;
   color: ${Colors.mainPink};
+
+  @media (max-width: ${breakpoints.tablet}) {
+    top: 200px;
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    top: 170px;
+    font-size: 28px;
+    line-height: 34px;
+  }
 `

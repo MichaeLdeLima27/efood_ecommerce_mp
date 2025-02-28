@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Colors } from '../../styles'
+import { Colors, breakpoints } from '../../styles'
 
 export const Container = styled.div`
   position: fixed;
@@ -23,6 +23,21 @@ export const ModalContent = styled.div`
   max-width: 1024px;
   display: flex;
   gap: 24px;
+
+  @media (max-width: ${breakpoints.desktop}) {
+    max-width: 80%;
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    padding: 16px;
+    max-width: 90%;
+  }
 `
 
 export const ModalImage = styled.img`
@@ -30,6 +45,12 @@ export const ModalImage = styled.img`
   height: 280px;
   object-fit: cover;
   border-radius: 4px;
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 100%;
+    max-width: 280px;
+    margin-bottom: 16px;
+  }
 `
 
 export const ProductInfo = styled.div`
@@ -58,10 +79,20 @@ export const ProductInfo = styled.div`
     font-size: 14px;
     cursor: pointer;
     transition: all 0.2s ease;
+    width: auto;
+
+    @media (max-width: ${breakpoints.tablet}) {
+      width: 100%;
+    }
 
     &:hover {
       background-color: ${Colors.white};
     }
+  }
+
+  @media (max-width: ${breakpoints.tablet}) {
+    width: 100%;
+    text-align: center;
   }
 `
 

@@ -4,12 +4,14 @@ import twitter from '../../assets/images/twitter.png'
 import facebook from '../../assets/images/facebook.png'
 import instagram from '../../assets/images/instagram.png'
 import logo from '../../assets/images/logo.svg'
-
+import { Link } from 'react-router-dom'
 const Footer = () => (
   <Container>
     <div className="container">
       <Logo>
-        <img src={logo} alt="E-food" />
+        <Link to="/">
+          <img src={logo} alt="E-food" />
+        </Link>
       </Logo>
       <SocialLinks>
         <SocialIcon href="#" title="Instagram">

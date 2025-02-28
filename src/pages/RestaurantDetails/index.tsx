@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import RestaurantHeader from '../../components/RestaurantHeader'
 import RestaurantHero from '../../components/RestaurantHero'
 import MenuList from '../../components/MenuList'
 import Modal from '../../components/Modal'
 import { MenuItem, Restaurant } from '../../models/Menu'
+import Header from '../../components/Header'
 
 const capitalize = (str: string) => {
   return str.charAt(0).toUpperCase() + str.slice(1)
@@ -41,7 +41,7 @@ const RestaurantDetails = () => {
 
   return (
     <>
-      <RestaurantHeader />
+      <Header />
       <RestaurantHero
         type={capitalize(restaurant.tipo)}
         name={restaurant.titulo}
