@@ -34,7 +34,7 @@ const Checkout = () => {
   })
 
   const dispatch = useDispatch()
-  const [checkout] = useCheckoutMutation()
+  const [checkout, { isSuccess, data }] = useCheckoutMutation()
 
   // Reset form when checkout is closed
   useEffect(() => {
@@ -47,6 +47,18 @@ const Checkout = () => {
       })
     }
   }, [isCheckoutOpen])
+
+  // Move to success step when API call succeeds
+  useEffect(() => {
+    if (isSuccess && data && data.orderId) {
+      setFormData((prev) => ({
+        ...prev,
+        orderId: data.orderId
+      }))
+      setCurrentStep(CheckoutStep.SUCCESS)
+      dispatch(clear())
+    }
+  }, [isSuccess, data, dispatch])
 
   const handleCloseCheckout = () => {
     dispatch(closeCart())
@@ -69,26 +81,46 @@ const Checkout = () => {
 
     setIsLoading(true)
 
+    // Format data according to the API expectations
     const payload: CheckoutPayload = {
-      delivery: formData.delivery,
-      payment: values,
-      products: items
+      products: items.map((item) => ({
+        id: item.id,
+        price: Number(item.preco)
+      })),
+      delivery: {
+        receiver: formData.delivery.receiver,
+        address: {
+          description: formData.delivery.address,
+          city: formData.delivery.city,
+          zipCode: formData.delivery.zipCode,
+          number: parseInt(formData.delivery.number) || 0,
+          complement: formData.delivery.complement
+        }
+      },
+      payment: {
+        card: {
+          name: values.cardName,
+          number: values.cardNumber.replace(/\s/g, ''),
+          code: parseInt(values.cardCode) || 0,
+          expires: {
+            month: parseInt(values.expirationMonth) || 0,
+            year: parseInt(values.expirationYear) || 0
+          }
+        }
+      }
     }
 
     try {
-      // Try to call the API
-      const data = await checkout(payload).unwrap()
-
+      await checkout(payload).unwrap()
+      // Success handling is done in the useEffect
       setFormData((prev) => ({
         ...prev,
-        payment: values,
-        orderId: data.orderId
+        payment: values
       }))
     } catch (error) {
       console.error('Checkout error:', error)
 
-      // This is a showcase - even if the API fails, we still want to show the order completion
-      // Generate a mock order ID for demonstration purposes
+      // For demo purposes, show success screen even if API fails
       const mockOrderId = `DEMO-${Math.floor(Math.random() * 10000)
         .toString()
         .padStart(4, '0')}`
@@ -98,10 +130,11 @@ const Checkout = () => {
         payment: values,
         orderId: mockOrderId
       }))
-    } finally {
-      // Move to success step regardless of API result
+
+      // Move to success when API fails (for demo)
       setCurrentStep(CheckoutStep.SUCCESS)
       dispatch(clear())
+    } finally {
       setIsLoading(false)
     }
   }

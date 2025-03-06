@@ -27,6 +27,7 @@ export const CheckoutContent = styled.div`
   padding: 32px 8px;
   overflow-y: auto;
   position: relative;
+  z-index: 999;
 
   @media (max-width: ${breakpoints.mobile}) {
     width: 80%;
@@ -34,7 +35,7 @@ export const CheckoutContent = styled.div`
 `
 
 export const Title = styled.h2`
-  font-size: 16px;
+  font-size: 18px;
   color: ${Colors.lightPink};
   font-weight: bold;
   margin-bottom: 16px;
@@ -73,7 +74,7 @@ export const Input = styled.input<{ isValid?: boolean }>`
   }
 
   &.error {
-    outline: 4px solid red;
+    outline: 2px solid red;
   }
 `
 
@@ -95,21 +96,27 @@ export const Button = styled.button`
   text-align: center;
   font-weight: 700;
   cursor: pointer;
-  margin-top: 8px;
+  margin-top: 16px;
   font-size: 14px;
-  height: 32px;
 `
 
 export const ErrorMessage = styled.p`
   color: ${Colors.warning};
   font-size: 12px;
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin-top: 4px;
 `
 
 export const OrderInfo = styled.div`
   color: ${Colors.lightPink};
   margin-bottom: 16px;
+  padding: 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  font-size: 16px;
+
+  strong {
+    font-weight: bold;
+  }
 `
 
 export const OrderAmount = styled.p`

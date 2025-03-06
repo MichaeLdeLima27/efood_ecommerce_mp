@@ -16,9 +16,31 @@ declare interface PaymentFormValues {
 }
 
 declare interface CheckoutPayload {
-  delivery: DeliveryFormValues
-  payment: PaymentFormValues
-  products: CartItem[]
+  products: {
+    id: number
+    price: number
+  }[]
+  delivery: {
+    receiver: string
+    address: {
+      description: string
+      city: string
+      zipCode: string
+      number: number
+      complement?: string
+    }
+  }
+  payment: {
+    card: {
+      name: string
+      number: string
+      code: number
+      expires: {
+        month: number
+        year: number
+      }
+    }
+  }
 }
 
 declare interface CheckoutResponse {
