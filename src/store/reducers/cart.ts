@@ -4,11 +4,13 @@ import { MenuItem } from '../../models/Menu'
 type CartState = {
   items: MenuItem[]
   isOpen: boolean
+  isCheckoutOpen: boolean
 }
 
 const initialState: CartState = {
   items: [],
-  isOpen: false
+  isOpen: false,
+  isCheckoutOpen: false
 }
 
 const cartSlice = createSlice({
@@ -23,14 +25,23 @@ const cartSlice = createSlice({
     },
     closeCart: (state) => {
       state.isOpen = false
+      state.isCheckoutOpen = false
     },
     openCart: (state) => {
       state.isOpen = true
+      state.isCheckoutOpen = false
+    },
+    openCheckout: (state) => {
+      state.isCheckoutOpen = true
+    },
+    clear: (state) => {
+      state.items = []
     }
   }
 })
 
-export const { addItem, removeItem, closeCart, openCart } = cartSlice.actions
+export const { addItem, removeItem, closeCart, openCart, openCheckout, clear } =
+  cartSlice.actions
 
 export const getTotalPrice = (items: MenuItem[]) => {
   return items

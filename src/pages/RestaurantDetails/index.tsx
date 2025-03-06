@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 import RestaurantHero from '../../components/RestaurantHero'
 import MenuList from '../../components/MenuList'
 import Modal from '../../components/Modal'
+import Cart from '../../components/Cart'
+import Checkout from '../../components/Checkout'
 import { MenuItem, Restaurant } from '../../models/Menu'
 import Header from '../../components/Header'
 
@@ -48,6 +50,8 @@ const RestaurantDetails = () => {
         image={restaurant.capa}
       />
       <MenuList items={restaurant.cardapio} onItemClick={handleOpenModal} />
+      <Cart />
+      <Checkout />
 
       {selectedItem && (
         <Modal

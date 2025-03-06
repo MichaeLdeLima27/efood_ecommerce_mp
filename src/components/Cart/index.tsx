@@ -1,6 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store'
-import { closeCart, removeItem, getTotalPrice } from '../../store/reducers/cart'
+import {
+  closeCart,
+  removeItem,
+  getTotalPrice,
+  openCheckout
+} from '../../store/reducers/cart'
 import * as S from './styles'
 import trashIcon from '../../assets/images/lixeira.png'
 import closeIcon from '../../assets/images/close.png'
@@ -18,8 +23,7 @@ const Cart = () => {
   }
 
   const handleCheckout = () => {
-    //  to the checkout page
-    console.log('Proceed to checkout')
+    dispatch(openCheckout())
   }
 
   if (!isOpen) {
