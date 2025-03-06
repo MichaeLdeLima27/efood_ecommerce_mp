@@ -6,9 +6,24 @@ interface OrderSuccessProps {
 }
 
 const OrderSuccess = ({ orderId, onFinish }: OrderSuccessProps) => {
+  const isDemo = orderId.startsWith('DEMO-')
+
   return (
     <>
       <S.Title>Pedido realizado - {orderId}</S.Title>
+      {isDemo && (
+        <S.OrderMessage
+          style={{
+            color: '#fff',
+            backgroundColor: 'rgba(0,0,0,0.2)',
+            padding: '8px',
+            borderRadius: '4px'
+          }}
+        >
+          ⚠️ Nota: Este é um pedido de demonstração. Em um ambiente real, seu
+          pedido seria processado pelo servidor.
+        </S.OrderMessage>
+      )}
       <S.OrderMessage>
         Estamos felizes em informar que seu pedido já está em processo de
         preparação e, em breve, será entregue no endereço fornecido.

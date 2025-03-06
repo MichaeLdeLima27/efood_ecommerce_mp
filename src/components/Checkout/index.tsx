@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store'
 import { closeCart, clear } from '../../store/reducers/cart'
+import { useCheckoutMutation } from '../../services/api'
 import * as S from './styles'
 import DeliveryForm from './DeliveryForm'
 import PaymentForm from './PaymentForm'
@@ -33,18 +34,22 @@ const Checkout = () => {
   })
 
   const dispatch = useDispatch()
+  const [checkout] = useCheckoutMutation()
 
-  const handleCloseCheckout = () => {
-    dispatch(closeCart())
-    // Reset to delivery step when closing
-    setTimeout(() => {
+  // Reset form when checkout is closed
+  useEffect(() => {
+    if (!isCheckoutOpen) {
       setCurrentStep(CheckoutStep.DELIVERY)
       setFormData({
         delivery: null,
         payment: null,
         orderId: null
       })
-    }, 300)
+    }
+  }, [isCheckoutOpen])
+
+  const handleCloseCheckout = () => {
+    dispatch(closeCart())
   }
 
   const handleDeliverySubmit = (values: DeliveryFormValues) => {
@@ -53,40 +58,50 @@ const Checkout = () => {
   }
 
   const handlePaymentSubmit = async (values: PaymentFormValues) => {
+    if (!formData.delivery) {
+      // Handle error - delivery data missing
+      alert(
+        'Dados de entrega não encontrados. Por favor, volte para a etapa anterior.'
+      )
+      setCurrentStep(CheckoutStep.DELIVERY)
+      return
+    }
+
     setIsLoading(true)
 
     const payload: CheckoutPayload = {
-      delivery: formData.delivery!,
+      delivery: formData.delivery,
       payment: values,
       products: items
     }
 
     try {
-      const response = await fetch(
-        'https://fake-api-tau.vercel.app/api/efood/checkout',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(payload)
-        }
-      )
-
-      const data: CheckoutResponse = await response.json()
+      // Try to call the API
+      const data = await checkout(payload).unwrap()
 
       setFormData((prev) => ({
         ...prev,
         payment: values,
         orderId: data.orderId
       }))
-
-      setCurrentStep(CheckoutStep.SUCCESS)
-      dispatch(clear())
     } catch (error) {
       console.error('Checkout error:', error)
-      alert('Erro ao processar o pagamento. Tente novamente.')
+
+      // This is a showcase - even if the API fails, we still want to show the order completion
+      // Generate a mock order ID for demonstration purposes
+      const mockOrderId = `DEMO-${Math.floor(Math.random() * 10000)
+        .toString()
+        .padStart(4, '0')}`
+
+      setFormData((prev) => ({
+        ...prev,
+        payment: values,
+        orderId: mockOrderId
+      }))
     } finally {
+      // Move to success step regardless of API result
+      setCurrentStep(CheckoutStep.SUCCESS)
+      dispatch(clear())
       setIsLoading(false)
     }
   }

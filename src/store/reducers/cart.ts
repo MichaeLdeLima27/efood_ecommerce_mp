@@ -32,6 +32,7 @@ const cartSlice = createSlice({
       state.isCheckoutOpen = false
     },
     openCheckout: (state) => {
+      state.isOpen = true
       state.isCheckoutOpen = true
     },
     clear: (state) => {

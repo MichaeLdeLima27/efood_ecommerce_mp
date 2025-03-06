@@ -9,22 +9,22 @@ export const CheckoutContainer = styled.div`
   height: 100%;
   display: flex;
   justify-content: flex-end;
-  z-index: 10;
+  z-index: 990;
 `
 
 export const CheckoutOverlay = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 `
 
 export const CheckoutContent = styled.div`
   background-color: ${Colors.mainPink};
   width: 360px;
   padding: 32px 8px;
-  z-index: 1;
   overflow-y: auto;
   position: relative;
 
@@ -73,7 +73,7 @@ export const Input = styled.input<{ isValid?: boolean }>`
   }
 
   &.error {
-    outline: 2px solid red;
+    outline: 4px solid red;
   }
 `
 

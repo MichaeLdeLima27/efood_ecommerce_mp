@@ -1,7 +1,14 @@
-import { Formik, Form, Field, ErrorMessage as FormikErrorMessage } from 'formik'
+import React from 'react'
+import {
+  Formik,
+  Form,
+  Field,
+  ErrorMessage as FormikErrorMessage,
+  FieldProps
+} from 'formik'
 import * as Yup from 'yup'
-import InputMask from 'react-input-mask'
 import * as S from './styles'
+import { TextMaskCustom } from './TextMaskCustom'
 
 interface PaymentFormProps {
   initialValues?: PaymentFormValues | null
@@ -11,7 +18,12 @@ interface PaymentFormProps {
 }
 
 const paymentSchema = Yup.object().shape({
-  cardName: Yup.string().required('Campo obrigatório'),
+  cardName: Yup.string()
+    .required('Campo obrigatório')
+    .matches(
+      /^[a-zA-ZÀ-ÿ\s]+$/,
+      'Não são permitidos números ou caracteres especiais'
+    ),
   cardNumber: Yup.string()
     .required('Campo obrigatório')
     .matches(/^\d{4} \d{4} \d{4} \d{4}$/, 'Número de cartão inválido'),
@@ -65,16 +77,19 @@ const PaymentForm = ({
               <S.InputGroup>
                 <S.Label htmlFor="cardNumber">Número do cartão</S.Label>
                 <Field name="cardNumber">
-                  {({ field }: any) => (
-                    <InputMask
+                  {({ field }: FieldProps) => (
+                    <S.Input
                       {...field}
+                      id="cardNumber"
                       mask="9999 9999 9999 9999"
-                      maskChar={null}
+                      type="text"
                       className={
                         errors.cardNumber && touched.cardNumber ? 'error' : ''
                       }
-                      id="cardNumber"
-                      as={S.Input}
+                      as={TextMaskCustom}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        field.onChange(e)
+                      }}
                     />
                   )}
                 </Field>
@@ -86,13 +101,26 @@ const PaymentForm = ({
 
               <S.InputGroup>
                 <S.Label htmlFor="cardCode">CVV</S.Label>
-                <Field
-                  as={S.Input}
-                  id="cardCode"
-                  name="cardCode"
-                  maxLength={3}
-                  className={errors.cardCode && touched.cardCode ? 'error' : ''}
-                />
+                <Field name="cardCode">
+                  {({ field, form }: FieldProps) => (
+                    <S.Input
+                      {...field}
+                      id="cardCode"
+                      type="text"
+                      maxLength={3}
+                      className={
+                        errors.cardCode && touched.cardCode ? 'error' : ''
+                      }
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        // Only allow digits
+                        const value = e.target.value.replace(/\D/g, '')
+                        if (value.length <= 3) {
+                          form.setFieldValue('cardCode', value)
+                        }
+                      }}
+                    />
+                  )}
+                </Field>
                 <FormikErrorMessage
                   name="cardCode"
                   component={S.ErrorMessage}
@@ -104,18 +132,21 @@ const PaymentForm = ({
               <S.InputGroup>
                 <S.Label htmlFor="expirationMonth">Mês de vencimento</S.Label>
                 <Field name="expirationMonth">
-                  {({ field }: any) => (
-                    <InputMask
+                  {({ field }: FieldProps) => (
+                    <S.Input
                       {...field}
+                      id="expirationMonth"
                       mask="99"
-                      maskChar={null}
+                      type="text"
                       className={
                         errors.expirationMonth && touched.expirationMonth
                           ? 'error'
                           : ''
                       }
-                      id="expirationMonth"
-                      as={S.Input}
+                      as={TextMaskCustom}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        field.onChange(e)
+                      }}
                     />
                   )}
                 </Field>
@@ -128,18 +159,21 @@ const PaymentForm = ({
               <S.InputGroup>
                 <S.Label htmlFor="expirationYear">Ano de vencimento</S.Label>
                 <Field name="expirationYear">
-                  {({ field }: any) => (
-                    <InputMask
+                  {({ field }: FieldProps) => (
+                    <S.Input
                       {...field}
+                      id="expirationYear"
                       mask="9999"
-                      maskChar={null}
+                      type="text"
                       className={
                         errors.expirationYear && touched.expirationYear
                           ? 'error'
                           : ''
                       }
-                      id="expirationYear"
-                      as={S.Input}
+                      as={TextMaskCustom}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                        field.onChange(e)
+                      }}
                     />
                   )}
                 </Field>

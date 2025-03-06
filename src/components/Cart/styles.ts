@@ -9,7 +9,7 @@ export const CartContainer = styled.div`
   height: 100%;
   display: flex;
   justify-content: flex-end;
-  z-index: 10;
+  z-index: 980;
 `
 
 export const CartOverlay = styled.div`
@@ -18,7 +18,7 @@ export const CartOverlay = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.5);
 `
 
 export const CartContent = styled.div`
