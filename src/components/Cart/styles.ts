@@ -33,13 +33,7 @@ export const CartContainer = styled.div<AnimatedProps>`
   justify-content: flex-end;
   z-index: 980;
   pointer-events: ${({ animate }) => (animate ? 'auto' : 'none')};
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  perspective: 1000px;
-  will-change: transform;
-  visibility: ${({ animate }) => (animate ? 'visible' : 'hidden')};
-  transition: visibility 0.3s;
-  isolation: isolate;
+  opacity: 1;
 `
 
 export const CartOverlay = styled.div<AnimatedProps>`
@@ -51,9 +45,7 @@ export const CartOverlay = styled.div<AnimatedProps>`
   background-color: rgba(0, 0, 0, 0.5);
   opacity: ${({ animate }) => (animate ? 1 : 0)};
   transition: opacity 0.3s ease;
-  backface-visibility: hidden;
   z-index: 1;
-  will-change: opacity;
 `
 
 export const CartContent = styled.div<AnimatedProps>`
@@ -65,16 +57,8 @@ export const CartContent = styled.div<AnimatedProps>`
   overflow-y: auto;
   position: relative;
   transform: translateX(${({ animate }) => (animate ? '0' : '100%')});
-  will-change: transform;
-  backface-visibility: hidden;
-  isolation: isolate;
+  transition: transform 0.3s ease;
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-  contain: content;
-  opacity: ${({ animate }) => (animate ? 1 : 0)};
-  visibility: ${({ animate }) => (animate ? 'visible' : 'hidden')};
-  transition: transform 0.3s ease,
-    opacity 0.1s ease ${({ animate }) => (animate ? '0s' : '0.2s')},
-    visibility 0.1s ${({ animate }) => (animate ? '0s' : '0.2s')};
 
   @media (max-width: ${breakpoints.mobile}) {
     width: 80%;

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store'
 import {
@@ -14,35 +14,49 @@ import * as S from './styles'
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootState) => state.cart)
   const [animate, setAnimate] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
   const [removingItems, setRemovingItems] = useState<Record<number, boolean>>(
     {}
   )
-  const [isClosing, setIsClosing] = useState(false)
   const dispatch = useDispatch()
+  const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null)
 
+  // Handle cart visibility and animation
   useEffect(() => {
     if (isOpen) {
+      // Cart opened - show immediately and animate in
+      setIsVisible(true)
       document.body.style.overflow = 'hidden'
-      setIsClosing(false)
-      // Delay animation start to allow transition to work properly
-      setTimeout(() => {
+
+      // Start animation in next frame for smooth transition
+      const timer = setTimeout(() => {
         setAnimate(true)
-      }, 50)
+      }, 10)
+
+      return () => clearTimeout(timer)
     } else {
+      // Cart closed - animate out but don't hide yet
+      setAnimate(false)
       document.body.style.overflow = ''
+
+      // Hide after animation completes
+      if (isVisible) {
+        animationTimeoutRef.current = setTimeout(() => {
+          setIsVisible(false)
+        }, 300)
+
+        return () => {
+          if (animationTimeoutRef.current) {
+            clearTimeout(animationTimeoutRef.current)
+          }
+        }
+      }
     }
-    return () => {
-      document.body.style.overflow = ''
-    }
-  }, [isOpen])
+  }, [isOpen, isVisible])
 
   const handleCloseCart = () => {
-    setIsClosing(true)
-    setAnimate(false)
-    setTimeout(() => {
-      dispatch(closeCart())
-      setIsClosing(false)
-    }, 300)
+    // Just dispatch close - the effect will handle animation
+    dispatch(closeCart())
   }
 
   const handleRemoveItem = (id: number) => {
@@ -50,14 +64,15 @@ const Cart = () => {
     setTimeout(() => {
       dispatch(removeItem(id))
       setRemovingItems((prev) => ({ ...prev, [id]: false }))
-    }, 500) // Match with animation duration
+    }, 500)
   }
 
   const handleCheckout = () => {
     dispatch(openCheckout())
   }
 
-  if (!isOpen && !isClosing) {
+  // Only render if cart should be visible
+  if (!isVisible) {
     return null
   }
 
