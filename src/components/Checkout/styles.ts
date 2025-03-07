@@ -176,7 +176,7 @@ export const Input = styled.input<{ isValid?: boolean }>`
   border: none;
   padding: 0 8px;
   font-size: 14px;
-  color: ${Colors.mainPink};
+  color: ${Colors.black};
   outline: none;
 
   &:focus {
@@ -184,7 +184,7 @@ export const Input = styled.input<{ isValid?: boolean }>`
   }
 
   &.error {
-    outline: 2px solid red;
+    outline: 4px solid red;
   }
 `
 

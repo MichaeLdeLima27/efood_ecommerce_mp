@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { CircleLoader } from 'react-spinners'
 
 import { RootState } from '../../store'
-import { closeCart, openCart } from '../../store/reducers/cart'
+import { closeCart, openCart, clear } from '../../store/reducers/cart'
 import { useCheckoutMutation } from '../../services/api'
 import DeliveryForm from './DeliveryForm'
 import PaymentForm from './PaymentForm'
@@ -178,6 +178,7 @@ const Checkout = () => {
 
   const handleFinish = () => {
     setDirection('backward')
+    dispatch(clear())
     setTimeout(() => {
       handleCloseCheckout()
     }, 300)

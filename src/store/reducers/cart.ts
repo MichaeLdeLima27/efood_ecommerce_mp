@@ -38,6 +38,12 @@ const cartSlice = createSlice({
     clear: (state) => {
       state.items = []
     }
+  },
+  extraReducers: (builder) => {
+    // Handle the clearCart action if it's still being used elsewhere
+    builder.addCase('cart/clearCart', (state) => {
+      state.items = []
+    })
   }
 })
 
@@ -49,5 +55,8 @@ export const getTotalPrice = (items: MenuItem[]) => {
     .reduce((total, item) => total + parseFloat(item.preco.toString()), 0)
     .toFixed(2)
 }
+
+// Keep this export for backward compatibility
+export const clearCart = { type: 'cart/clearCart' }
 
 export default cartSlice.reducer

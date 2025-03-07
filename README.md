@@ -1,5 +1,49 @@
 # Max React Template - Rapid, Scalable Web Development Starter
 
+A responsive food e-commerce platform built with React, Redux, TypeScript, Styled Components, Fake Store API. This application allows users to browse restaurants, view menu items, add items to the cart, and complete the checkout process.
+
+## 🖼️ Project Demo
+
+![Project Demo](https://github.com/maxh33/food-ecommerce/blob/main/public/demo.png)
+
+## Live Demo
+
+Check out the live demo: [Food E-commerce](https://food-ecommerce-six.vercel.app/)
+
+## Demo Preview
+
+![Demo GIF](https://github.com/maxh33/food-ecommerce/blob/main/public/FoodEcommerceDemo.gif)
+
+## Features
+
+- Restaurant listing and filtering
+- Detailed restaurant view with menu items
+- Add to cart functionality with quantity control
+- Smooth cart animations
+- Multi-step checkout process:
+  - Address information
+  - Payment details (with card validation)
+  - Order confirmation
+- Responsive design for all devices
+- State management with Redux
+- Form validation
+
+## Technologies Used
+
+- React.js
+- TypeScript
+- Redux & Redux Toolkit
+- Styled Components
+- React Router
+- Formik
+
+## How to Run
+
+1. Clone this repository
+2. Install dependencies with `npm install`
+3. Run the development server with `npm run dev`
+4. Access the application at `http://localhost:5173`
+
 ## 🌟 Why Use This Template?
 
 ### 🚀 Accelerate Your Development
@@ -22,9 +66,7 @@ This template is designed to jumpstart your React projects with a robust, produc
 - **Scalable Structure**: Easily grow your application
 - **Modern Tech Stack**: Leveraging latest React and TypeScript features
 
-## 🖼️ Project Demo
 
-![Project Demo](https://github.com/maxh33/food-ecommerce/blob/main/public/demo.png)
 
 ## 🚀 Quick Start
 
@@ -189,3 +231,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Food E-commerce
+
+
