@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useDispatch } from 'react-redux'
 import { CircleLoader } from 'react-spinners'
 
@@ -15,7 +15,36 @@ type Props = {
 const Modal = ({ menuItem, isOpen, onClose }: Props) => {
   const dispatch = useDispatch()
   const [imageLoading, setImageLoading] = useState(true)
+  const [imageError, setImageError] = useState(false)
   const [animate, setAnimate] = useState(false)
+
+  const handleClose = useCallback(() => {
+    setAnimate(false)
+    setTimeout(() => {
+      onClose()
+    }, 300) // Match this with the animation duration in CSS
+  }, [onClose])
+
+  // Preload and handle image loading
+  useEffect(() => {
+    if (isOpen && menuItem) {
+      setImageLoading(true)
+      setImageError(false)
+
+      const img = new Image()
+      img.src = menuItem.foto
+      img.onload = () => setImageLoading(false)
+      img.onerror = () => {
+        setImageLoading(false)
+        setImageError(true)
+      }
+
+      return () => {
+        img.onload = null
+        img.onerror = null
+      }
+    }
+  }, [isOpen, menuItem])
 
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
@@ -30,14 +59,7 @@ const Modal = ({ menuItem, isOpen, onClose }: Props) => {
     return () => {
       window.removeEventListener('keydown', handleEsc)
     }
-  }, [isOpen])
-
-  const handleClose = () => {
-    setAnimate(false)
-    setTimeout(() => {
-      onClose()
-    }, 300) // Match this with the animation duration in CSS
-  }
+  }, [isOpen, handleClose])
 
   const handleAddToCart = () => {
     dispatch(addItem(menuItem))
@@ -57,12 +79,18 @@ const Modal = ({ menuItem, isOpen, onClose }: Props) => {
               <CircleLoader color="#E66767" size={50} />
             </S.LoaderWrapper>
           )}
-          <S.ModalImage
-            src={menuItem.foto}
-            alt={menuItem.nome}
-            onLoad={() => setImageLoading(false)}
-            style={{ opacity: imageLoading ? 0 : 1 }}
-          />
+          {imageError ? (
+            <S.ErrorMessage>Imagem não disponível</S.ErrorMessage>
+          ) : (
+            <S.ModalImage
+              src={menuItem.foto}
+              alt={menuItem.nome}
+              style={{
+                opacity: imageLoading ? 0 : 1,
+                transition: 'opacity 0.3s ease'
+              }}
+            />
+          )}
         </S.ImageContainer>
         <S.ProductInfo>
           <h2>{menuItem.nome}</h2>

@@ -50,8 +50,21 @@ const RestaurantDetails = () => {
     <>
       <Header />
       {isLoading ? (
-        <div style={{ textAlign: 'center', padding: '80px' }}>
-          <CircleLoader color="#E66767" size={40} />
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%',
+            padding: '80px'
+          }}
+        >
+          <CircleLoader
+            color="#E66767"
+            size={60}
+            loading={isLoading}
+            speedMultiplier={0.8}
+          />
         </div>
       ) : restaurant ? (
         <>
@@ -63,7 +76,14 @@ const RestaurantDetails = () => {
           <MenuList items={restaurant.cardapio} onItemClick={handleOpenModal} />
         </>
       ) : (
-        <div style={{ textAlign: 'center', padding: '40px' }}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            width: '100%',
+            padding: '40px'
+          }}
+        >
           Restaurante não encontrado
         </div>
       )}

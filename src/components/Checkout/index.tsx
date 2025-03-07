@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { CircleLoader } from 'react-spinners'
 
 import { RootState } from '../../store'
-import { closeCart, clear } from '../../store/reducers/cart'
+import { closeCart, openCart } from '../../store/reducers/cart'
 import { useCheckoutMutation } from '../../services/api'
 import DeliveryForm from './DeliveryForm'
 import PaymentForm from './PaymentForm'
@@ -34,21 +34,25 @@ const Checkout = () => {
     payment: null,
     orderId: null
   })
+  const [paymentFormValues, setPaymentFormValues] =
+    useState<PaymentFormValues | null>(null)
+  const [isClosingToCart, setIsClosingToCart] = useState(false)
 
   const dispatch = useDispatch()
   const [checkout, { isSuccess, data }] = useCheckoutMutation()
 
   // Reset form when checkout is closed
   useEffect(() => {
-    if (!isCheckoutOpen) {
+    if (!isCheckoutOpen && !isClosingToCart) {
       setCurrentStep(CheckoutStep.DELIVERY)
       setFormData({
         delivery: null,
         payment: null,
         orderId: null
       })
+      setPaymentFormValues(null)
     }
-  }, [isCheckoutOpen])
+  }, [isCheckoutOpen, isClosingToCart])
 
   // Move to success step when API call succeeds
   useEffect(() => {
@@ -59,18 +63,38 @@ const Checkout = () => {
       }))
       setDirection('forward')
       setCurrentStep(CheckoutStep.SUCCESS)
-      dispatch(clear())
     }
-  }, [isSuccess, data, dispatch])
+  }, [isSuccess, data])
 
   const handleCloseCheckout = () => {
     dispatch(closeCart())
+  }
+
+  const handleBackToCart = () => {
+    setDirection('backward')
+    setIsClosingToCart(true)
+
+    // Close checkout and re-open cart with better timing
+    setTimeout(() => {
+      dispatch(closeCart())
+
+      // Re-open cart after a brief delay to allow animations to complete
+      setTimeout(() => {
+        dispatch(openCart())
+        setIsClosingToCart(false)
+      }, 150)
+    }, 300)
   }
 
   const handleDeliverySubmit = (values: DeliveryFormValues) => {
     setFormData((prev) => ({ ...prev, delivery: values }))
     setDirection('forward')
     setCurrentStep(CheckoutStep.PAYMENT)
+  }
+
+  const handlePaymentChange = (values: PaymentFormValues) => {
+    // Update values when any field in the payment form changes
+    setPaymentFormValues(values)
   }
 
   const handlePaymentSubmit = async (values: PaymentFormValues) => {
@@ -83,6 +107,9 @@ const Checkout = () => {
       setCurrentStep(CheckoutStep.DELIVERY)
       return
     }
+
+    // Save payment form values for navigation
+    setPaymentFormValues(values)
 
     setIsLoading(true)
 
@@ -139,7 +166,6 @@ const Checkout = () => {
       // Move to success when API fails (for demo)
       setDirection('forward')
       setCurrentStep(CheckoutStep.SUCCESS)
-      dispatch(clear())
     } finally {
       setIsLoading(false)
     }
@@ -151,7 +177,10 @@ const Checkout = () => {
   }
 
   const handleFinish = () => {
-    handleCloseCheckout()
+    setDirection('backward')
+    setTimeout(() => {
+      handleCloseCheckout()
+    }, 300)
   }
 
   if (!isCheckoutOpen) {
@@ -173,7 +202,7 @@ const Checkout = () => {
                 <DeliveryForm
                   initialValues={formData.delivery}
                   onSubmit={handleDeliverySubmit}
-                  onCancel={handleCloseCheckout}
+                  onCancel={handleBackToCart}
                 />
               </S.StepContainer>
             )}
@@ -181,10 +210,11 @@ const Checkout = () => {
             {currentStep === CheckoutStep.PAYMENT && (
               <S.StepContainer direction={direction}>
                 <PaymentForm
-                  initialValues={formData.payment}
+                  initialValues={paymentFormValues || formData.payment}
                   onSubmit={handlePaymentSubmit}
                   onBack={handleBackToDelivery}
                   totalAmount={items.reduce((acc, item) => acc + item.preco, 0)}
+                  onChange={handlePaymentChange}
                 />
               </S.StepContainer>
             )}

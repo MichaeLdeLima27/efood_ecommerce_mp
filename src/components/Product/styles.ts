@@ -44,6 +44,25 @@ export const LoaderWrapper = styled.div`
   justify-content: center;
 `
 
+export const ErrorPlaceholder = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(230, 103, 103, 0.1);
+  color: ${Colors.mainPink};
+  font-size: 14px;
+  text-align: center;
+  padding: 0 8px;
+
+  span {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+`
+
 export const Titulo = styled.h3`
   font-weight: bold;
   font-size: 18px;

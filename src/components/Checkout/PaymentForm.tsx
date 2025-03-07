@@ -9,12 +9,14 @@ import {
 import * as Yup from 'yup'
 import * as S from './styles'
 import { TextMaskCustom } from './TextMaskCustom'
+import closeIcon from '../../assets/images/close.png'
 
 interface PaymentFormProps {
   initialValues?: PaymentFormValues | null
   onSubmit: (values: PaymentFormValues) => void
   onBack: () => void
   totalAmount: number
+  onChange?: (values: PaymentFormValues) => void
 }
 
 const paymentSchema = Yup.object().shape({
@@ -50,18 +52,22 @@ const PaymentForm = ({
   initialValues,
   onSubmit,
   onBack,
-  totalAmount
+  totalAmount,
+  onChange
 }: PaymentFormProps) => {
   return (
-    <>
+    <S.FormContainer>
+      <S.CloseButton onClick={onBack}>
+        <img src={closeIcon} alt="Fechar" />
+      </S.CloseButton>
       <S.Title>Pagamento - Valor a pagar R$ {totalAmount.toFixed(2)}</S.Title>
       <Formik
         initialValues={initialValues || defaultValues}
         validationSchema={paymentSchema}
         onSubmit={onSubmit}
       >
-        {({ errors, touched }) => (
-          <Form>
+        {({ errors, touched, values }) => (
+          <Form onChange={() => onChange && onChange(values)}>
             <S.InputGroup>
               <S.Label htmlFor="cardName">Nome no cartão</S.Label>
               <Field
@@ -89,6 +95,7 @@ const PaymentForm = ({
                       as={TextMaskCustom}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         field.onChange(e)
+                        setTimeout(() => onChange && onChange(values), 0)
                       }}
                     />
                   )}
@@ -116,6 +123,15 @@ const PaymentForm = ({
                         const value = e.target.value.replace(/\D/g, '')
                         if (value.length <= 3) {
                           form.setFieldValue('cardCode', value)
+                          setTimeout(
+                            () =>
+                              onChange &&
+                              onChange({
+                                ...values,
+                                cardCode: value
+                              }),
+                            0
+                          )
                         }
                       }}
                     />
@@ -146,6 +162,7 @@ const PaymentForm = ({
                       as={TextMaskCustom}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         field.onChange(e)
+                        setTimeout(() => onChange && onChange(values), 0)
                       }}
                     />
                   )}
@@ -173,6 +190,7 @@ const PaymentForm = ({
                       as={TextMaskCustom}
                       onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                         field.onChange(e)
+                        setTimeout(() => onChange && onChange(values), 0)
                       }}
                     />
                   )}
@@ -191,7 +209,7 @@ const PaymentForm = ({
           </Form>
         )}
       </Formik>
-    </>
+    </S.FormContainer>
   )
 }
 

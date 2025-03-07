@@ -144,3 +144,16 @@ export const CloseButton = styled.button`
     transform: scale(1.1);
   }
 `
+
+export const ErrorMessage = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: ${Colors.white};
+  font-size: 14px;
+  text-align: center;
+  padding: 16px;
+`

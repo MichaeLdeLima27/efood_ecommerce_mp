@@ -9,6 +9,7 @@ import {
 import * as Yup from 'yup'
 import * as S from './styles'
 import { TextMaskCustom } from './TextMaskCustom'
+import closeIcon from '../../assets/images/close.png'
 
 interface DeliveryFormProps {
   initialValues?: DeliveryFormValues | null
@@ -56,7 +57,10 @@ const DeliveryForm = ({
   onCancel
 }: DeliveryFormProps) => {
   return (
-    <>
+    <S.FormContainer>
+      <S.CloseButton onClick={onCancel}>
+        <img src={closeIcon} alt="Fechar" />
+      </S.CloseButton>
       <S.Title>Entrega</S.Title>
       <Formik
         initialValues={initialValues || defaultValues}
@@ -162,7 +166,7 @@ const DeliveryForm = ({
           </Form>
         )}
       </Formik>
-    </>
+    </S.FormContainer>
   )
 }
 

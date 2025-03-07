@@ -7,9 +7,9 @@ import {
   getTotalPrice,
   openCheckout
 } from '../../store/reducers/cart'
-import * as S from './styles'
 import trashIcon from '../../assets/images/lixeira.png'
 import closeIcon from '../../assets/images/close.png'
+import * as S from './styles'
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootState) => state.cart)
@@ -22,8 +22,17 @@ const Cart = () => {
 
   useEffect(() => {
     if (isOpen) {
+      document.body.style.overflow = 'hidden'
       setIsClosing(false)
-      setAnimate(true)
+      // Delay animation start to allow transition to work properly
+      setTimeout(() => {
+        setAnimate(true)
+      }, 50)
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
     }
   }, [isOpen])
 

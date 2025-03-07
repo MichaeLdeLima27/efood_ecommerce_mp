@@ -32,6 +32,11 @@ export const CheckoutContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   z-index: 990;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform;
+  contain: layout;
 `
 
 export const CheckoutOverlay = styled.div`
@@ -41,6 +46,7 @@ export const CheckoutOverlay = styled.div`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
 `
 
 export const CheckoutContent = styled.div`
@@ -50,10 +56,20 @@ export const CheckoutContent = styled.div`
   overflow-y: auto;
   position: relative;
   z-index: 999;
+  will-change: transform;
+  backface-visibility: hidden;
+  isolation: isolate;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  contain: content;
 
   @media (max-width: ${breakpoints.mobile}) {
     width: 80%;
   }
+`
+
+export const FormContainer = styled.div`
+  position: relative;
+  width: 100%;
 `
 
 export const SuccessContainer = styled.div`
@@ -77,6 +93,11 @@ export const StepContainer = styled.div<{ direction: 'forward' | 'backward' }>`
   animation: ${(props) =>
       props.direction === 'forward' ? slideInLeft : slideInRight}
     0.4s ease forwards;
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  position: relative;
+  transform-style: preserve-3d;
+  contain: content;
 `
 
 export const BackButton = styled.button`
@@ -101,12 +122,33 @@ export const BackButton = styled.button`
   }
 `
 
+export const CloseButton = styled.button`
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  img {
+    width: 16px;
+    height: 16px;
+  }
+`
+
 export const Title = styled.h2`
   font-size: 18px;
   color: ${Colors.lightPink};
   font-weight: bold;
   margin-bottom: 16px;
   position: relative;
+  padding-top: 8px;
 `
 
 export const Form = styled.form`
@@ -164,7 +206,7 @@ export const Button = styled.button`
   text-align: center;
   font-weight: 700;
   cursor: pointer;
-  margin-top: 16px;
+  margin-top: 8px;
   font-size: 14px;
   transition: all 0.2s ease;
 

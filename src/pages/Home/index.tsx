@@ -38,7 +38,15 @@ const Home = () => {
     <>
       <Banner />
       {isLoading ? (
-        <div style={{ textAlign: 'center', padding: '40px' }}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            width: '100%',
+            padding: '40px'
+          }}
+        >
           <CircleLoader color="#E66767" size={40} />
         </div>
       ) : (

@@ -1,5 +1,5 @@
-import Product from '../Product'
 import { Menu } from '../../models/Menu'
+import Product from '../Product'
 import * as S from './styles'
 
 type Props = {

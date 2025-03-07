@@ -5,42 +5,6 @@ type AnimatedProps = {
   animate?: boolean
 }
 
-const slideIn = keyframes`
-  from {
-    transform: translateX(100%);
-  }
-  to {
-    transform: translateX(0);
-  }
-`
-
-const slideOut = keyframes`
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(100%);
-  }
-`
-
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`
-
-const fadeOut = keyframes`
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-`
-
 const itemRemove = keyframes`
   0% {
     opacity: 1;
@@ -68,8 +32,14 @@ export const CartContainer = styled.div<AnimatedProps>`
   display: flex;
   justify-content: flex-end;
   z-index: 980;
+  pointer-events: ${({ animate }) => (animate ? 'auto' : 'none')};
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  will-change: transform;
   visibility: ${({ animate }) => (animate ? 'visible' : 'hidden')};
-  transition: visibility 0.3s ease;
+  transition: visibility 0.3s;
+  isolation: isolate;
 `
 
 export const CartOverlay = styled.div<AnimatedProps>`
@@ -79,18 +49,32 @@ export const CartOverlay = styled.div<AnimatedProps>`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  animation: ${({ animate }) => (animate ? fadeIn : fadeOut)} 0.3s ease forwards;
+  opacity: ${({ animate }) => (animate ? 1 : 0)};
+  transition: opacity 0.3s ease;
+  backface-visibility: hidden;
+  z-index: 1;
+  will-change: opacity;
 `
 
 export const CartContent = styled.div<AnimatedProps>`
   background-color: ${Colors.mainPink};
   width: 360px;
+  height: 100%;
   padding: 32px 8px;
-  z-index: 1;
+  z-index: 2;
   overflow-y: auto;
   position: relative;
-  animation: ${({ animate }) => (animate ? slideIn : slideOut)} 0.3s ease
-    forwards;
+  transform: translateX(${({ animate }) => (animate ? '0' : '100%')});
+  will-change: transform;
+  backface-visibility: hidden;
+  isolation: isolate;
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+  contain: content;
+  opacity: ${({ animate }) => (animate ? 1 : 0)};
+  visibility: ${({ animate }) => (animate ? 'visible' : 'hidden')};
+  transition: transform 0.3s ease,
+    opacity 0.1s ease ${({ animate }) => (animate ? '0s' : '0.2s')},
+    visibility 0.1s ${({ animate }) => (animate ? '0s' : '0.2s')};
 
   @media (max-width: ${breakpoints.mobile}) {
     width: 80%;

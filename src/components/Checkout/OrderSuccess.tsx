@@ -16,8 +16,8 @@ const OrderSuccess = ({ orderId, onFinish }: OrderSuccessProps) => {
     {
       elementCount: 100,
       spread: 70,
-      lifetime: 200,
-      zIndex: 100,
+      lifetime: 220,
+      zIndex: 50,
       elementSize: 10
     }
   )
@@ -26,7 +26,7 @@ const OrderSuccess = ({ orderId, onFinish }: OrderSuccessProps) => {
     // Trigger confetti animation when component mounts
     const timer = setTimeout(() => {
       reward()
-    }, 200)
+    }, 300)
 
     return () => clearTimeout(timer)
   }, [reward])
