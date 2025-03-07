@@ -1,5 +1,27 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { Colors, breakpoints } from '../../styles'
+
+const slideInLeft = keyframes`
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`
+
+const slideInRight = keyframes`
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`
 
 export const CheckoutContainer = styled.div`
   position: fixed;
@@ -34,11 +56,57 @@ export const CheckoutContent = styled.div`
   }
 `
 
+export const SuccessContainer = styled.div`
+  position: relative;
+  width: 100%;
+  overflow-x: hidden;
+`
+
+export const ConfettiWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: 10px;
+  height: 10px;
+  pointer-events: none;
+`
+
+export const StepContainer = styled.div<{ direction: 'forward' | 'backward' }>`
+  animation: ${(props) =>
+      props.direction === 'forward' ? slideInLeft : slideInRight}
+    0.4s ease forwards;
+`
+
+export const BackButton = styled.button`
+  background: none;
+  border: none;
+  color: ${Colors.lightPink};
+  font-size: 14px;
+  margin-bottom: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+  animation: ${slideInRight} 0.4s ease forwards;
+
+  &:before {
+    content: '←';
+    margin-right: 8px;
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+`
+
 export const Title = styled.h2`
   font-size: 18px;
   color: ${Colors.lightPink};
   font-weight: bold;
   margin-bottom: 16px;
+  position: relative;
 `
 
 export const Form = styled.form`
@@ -98,6 +166,11 @@ export const Button = styled.button`
   cursor: pointer;
   margin-top: 16px;
   font-size: 14px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: ${Colors.white};
+  }
 `
 
 export const ErrorMessage = styled.p`

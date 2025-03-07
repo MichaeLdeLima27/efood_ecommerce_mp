@@ -1,3 +1,6 @@
+import { useEffect } from 'react'
+import { useReward } from 'react-rewards'
+
 import * as S from './styles'
 
 interface OrderSuccessProps {
@@ -7,10 +10,35 @@ interface OrderSuccessProps {
 
 const OrderSuccess = ({ orderId, onFinish }: OrderSuccessProps) => {
   const isDemo = orderId.startsWith('DEMO-')
+  const { reward, isAnimating } = useReward(
+    'orderSuccessConfetti',
+    'confetti',
+    {
+      elementCount: 100,
+      spread: 70,
+      lifetime: 200,
+      zIndex: 100,
+      elementSize: 10
+    }
+  )
+
+  useEffect(() => {
+    // Trigger confetti animation when component mounts
+    const timer = setTimeout(() => {
+      reward()
+    }, 200)
+
+    return () => clearTimeout(timer)
+  }, [reward])
 
   return (
-    <>
-      <S.Title>Pedido realizado com sucesso!</S.Title>
+    <S.SuccessContainer>
+      <S.Title>
+        Pedido realizado com sucesso!
+        <S.ConfettiWrapper>
+          <span id="orderSuccessConfetti" />
+        </S.ConfettiWrapper>
+      </S.Title>
 
       <S.OrderInfo>
         <strong>Número do pedido:</strong> {orderId}
@@ -51,8 +79,10 @@ const OrderSuccess = ({ orderId, onFinish }: OrderSuccessProps) => {
         gastronômica. Bom apetite!
       </S.OrderMessage>
 
-      <S.Button onClick={onFinish}>Concluir</S.Button>
-    </>
+      <S.Button onClick={onFinish} disabled={isAnimating}>
+        Concluir
+      </S.Button>
+    </S.SuccessContainer>
   )
 }
 

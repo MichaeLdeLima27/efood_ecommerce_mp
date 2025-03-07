@@ -10,20 +10,40 @@ export const Card = styled.div`
   height: 100%;
   border-radius: 8px;
 
-  img {
-    width: 100%;
-    height: 167px;
-    object-fit: cover;
-    border-radius: 8px;
-
-    @media (max-width: ${breakpoints.mobile}) {
-      height: 150px;
-    }
-  }
-
   @media (max-width: ${breakpoints.tablet}) {
     padding: 8px;
   }
+`
+
+export const ImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 167px;
+  border-radius: 8px;
+  overflow: hidden;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: opacity 0.3s ease;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    height: 150px;
+  }
+`
+
+export const LoaderWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 export const Title = styled.h3`

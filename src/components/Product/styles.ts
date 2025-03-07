@@ -10,19 +10,38 @@ export const Card = styled.div`
   border-radius: 2px;
   position: relative;
 
-  > img {
-    width: 100%;
-    height: 217px;
-    object-fit: cover;
-    border-radius: 8px 8px 0 0;
-  }
-
   ${TagContainer} {
     margin-right: 8px;
     background-color: ${Colors.mainPink};
     color: ${Colors.white};
     font-size: 12px;
   }
+`
+
+export const ImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 217px;
+  overflow: hidden;
+
+  > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+    transition: opacity 0.3s ease;
+  }
+`
+
+export const LoaderWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `
 
 export const Titulo = styled.h3`

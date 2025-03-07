@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { CircleLoader } from 'react-spinners'
+
 import { RootState } from '../../store'
 import { closeCart, clear } from '../../store/reducers/cart'
 import { useCheckoutMutation } from '../../services/api'
-import * as S from './styles'
 import DeliveryForm from './DeliveryForm'
 import PaymentForm from './PaymentForm'
 import OrderSuccess from './OrderSuccess'
-import { PulseLoader } from 'react-spinners'
+import * as S from './styles'
 
 enum CheckoutStep {
   DELIVERY = 0,
@@ -22,6 +23,7 @@ const Checkout = () => {
   const [currentStep, setCurrentStep] = useState<CheckoutStep>(
     CheckoutStep.DELIVERY
   )
+  const [direction, setDirection] = useState<'forward' | 'backward'>('forward')
   const [isLoading, setIsLoading] = useState(false)
   const [formData, setFormData] = useState<{
     delivery: DeliveryFormValues | null
@@ -55,6 +57,7 @@ const Checkout = () => {
         ...prev,
         orderId: data.orderId
       }))
+      setDirection('forward')
       setCurrentStep(CheckoutStep.SUCCESS)
       dispatch(clear())
     }
@@ -66,6 +69,7 @@ const Checkout = () => {
 
   const handleDeliverySubmit = (values: DeliveryFormValues) => {
     setFormData((prev) => ({ ...prev, delivery: values }))
+    setDirection('forward')
     setCurrentStep(CheckoutStep.PAYMENT)
   }
 
@@ -75,6 +79,7 @@ const Checkout = () => {
       alert(
         'Dados de entrega não encontrados. Por favor, volte para a etapa anterior.'
       )
+      setDirection('backward')
       setCurrentStep(CheckoutStep.DELIVERY)
       return
     }
@@ -132,6 +137,7 @@ const Checkout = () => {
       }))
 
       // Move to success when API fails (for demo)
+      setDirection('forward')
       setCurrentStep(CheckoutStep.SUCCESS)
       dispatch(clear())
     } finally {
@@ -140,6 +146,7 @@ const Checkout = () => {
   }
 
   const handleBackToDelivery = () => {
+    setDirection('backward')
     setCurrentStep(CheckoutStep.DELIVERY)
   }
 
@@ -157,32 +164,38 @@ const Checkout = () => {
       <S.CheckoutContent>
         {isLoading ? (
           <S.LoaderContainer>
-            <PulseLoader color="#ffffff" size={12} />
+            <CircleLoader color="#ffffff" size={40} />
           </S.LoaderContainer>
         ) : (
           <>
             {currentStep === CheckoutStep.DELIVERY && (
-              <DeliveryForm
-                initialValues={formData.delivery}
-                onSubmit={handleDeliverySubmit}
-                onCancel={handleCloseCheckout}
-              />
+              <S.StepContainer direction={direction}>
+                <DeliveryForm
+                  initialValues={formData.delivery}
+                  onSubmit={handleDeliverySubmit}
+                  onCancel={handleCloseCheckout}
+                />
+              </S.StepContainer>
             )}
 
             {currentStep === CheckoutStep.PAYMENT && (
-              <PaymentForm
-                initialValues={formData.payment}
-                onSubmit={handlePaymentSubmit}
-                onBack={handleBackToDelivery}
-                totalAmount={items.reduce((acc, item) => acc + item.preco, 0)}
-              />
+              <S.StepContainer direction={direction}>
+                <PaymentForm
+                  initialValues={formData.payment}
+                  onSubmit={handlePaymentSubmit}
+                  onBack={handleBackToDelivery}
+                  totalAmount={items.reduce((acc, item) => acc + item.preco, 0)}
+                />
+              </S.StepContainer>
             )}
 
             {currentStep === CheckoutStep.SUCCESS && formData.orderId && (
-              <OrderSuccess
-                orderId={formData.orderId}
-                onFinish={handleFinish}
-              />
+              <S.StepContainer direction={direction}>
+                <OrderSuccess
+                  orderId={formData.orderId}
+                  onFinish={handleFinish}
+                />
+              </S.StepContainer>
             )}
           </>
         )}

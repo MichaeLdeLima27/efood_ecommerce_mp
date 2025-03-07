@@ -1,6 +1,6 @@
-import MenuItem from '../MenuItem'
-import { Container, List } from './styles'
 import { MenuItem as MenuItemType } from '../../models/Menu'
+import MenuItem from '../MenuItem'
+import * as S from './styles'
 
 type Props = {
   items: MenuItemType[]
@@ -8,19 +8,20 @@ type Props = {
 }
 
 const MenuList = ({ items, onItemClick }: Props) => (
-  <Container>
-    <List>
+  <S.Container>
+    <S.List>
       {items.map((item) => (
-        <MenuItem
-          key={item.id}
-          title={item.nome}
-          description={item.descricao}
-          image={item.foto}
-          onClick={() => onItemClick(item)}
-        />
+        <li key={item.id}>
+          <MenuItem
+            title={item.nome}
+            description={item.descricao}
+            image={item.foto}
+            onClick={() => onItemClick(item)}
+          />
+        </li>
       ))}
-    </List>
-  </Container>
+    </S.List>
+  </S.Container>
 )
 
 export default MenuList
