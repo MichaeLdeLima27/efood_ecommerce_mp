@@ -10,20 +10,62 @@ export const Card = styled.div`
   height: 100%;
   border-radius: 8px;
 
-  img {
-    width: 100%;
-    height: 167px;
-    object-fit: cover;
-    border-radius: 8px;
-
-    @media (max-width: ${breakpoints.mobile}) {
-      height: 150px;
-    }
-  }
-
   @media (max-width: ${breakpoints.tablet}) {
     padding: 8px;
   }
+`
+
+export const ImageContainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 167px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: rgba(230, 103, 103, 0.1);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    transition: opacity 0.3s ease;
+  }
+
+  @media (max-width: ${breakpoints.mobile}) {
+    height: 150px;
+  }
+`
+
+export const ErrorPlaceholder = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(230, 103, 103, 0.2);
+  color: ${Colors.lightPink};
+  font-size: 14px;
+  text-align: center;
+  padding: 0 8px;
+
+  span {
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+`
+
+export const LoaderWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(230, 103, 103, 0.1);
 `
 
 export const Title = styled.h3`

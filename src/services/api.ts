@@ -8,10 +8,17 @@ export const api = createApi({
   endpoints: (builder) => ({
     getRestaurants: builder.query<Restaurant[], void>({
       query: () => 'restaurantes'
+    }),
+    checkout: builder.mutation<CheckoutResponse, CheckoutPayload>({
+      query: (body) => ({
+        url: 'checkout',
+        method: 'POST',
+        body
+      })
     })
   })
 })
 
-export const { useGetRestaurantsQuery } = api
+export const { useGetRestaurantsQuery, useCheckoutMutation } = api
 
 export default api

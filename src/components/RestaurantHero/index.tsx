@@ -1,11 +1,4 @@
-import {
-  HeroContainer,
-  HeroBackground,
-  HeroContent,
-  RestaurantType,
-  RestaurantName
-} from './styles'
-
+import * as S from './styles'
 import heroBackground from '../../assets/images/pastaFundoPerfil.png'
 
 type Props = {
@@ -16,13 +9,13 @@ type Props = {
 
 const RestaurantHero = ({ type, name }: Props) => {
   return (
-    <HeroContainer>
-      <HeroBackground style={{ backgroundImage: `url(${heroBackground})` }} />
-      <HeroContent>
-        <RestaurantType className="restaurant-type">{type}</RestaurantType>
-        <RestaurantName>{name}</RestaurantName>
-      </HeroContent>
-    </HeroContainer>
+    <S.HeroContainer>
+      <S.HeroBackground style={{ backgroundImage: `url(${heroBackground})` }} />
+      <S.HeroContent>
+        <S.RestaurantType>{type}</S.RestaurantType>
+        <S.RestaurantName>{name}</S.RestaurantName>
+      </S.HeroContent>
+    </S.HeroContainer>
   )
 }
 

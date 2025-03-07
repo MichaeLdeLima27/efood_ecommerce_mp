@@ -1,14 +1,16 @@
-import { Container, Imagem, Logo, Titulo } from './styles'
-import logo from '../../assets/images/logo.svg'
+import * as S from './styles'
+import LogoImg from '../../assets/images/logo.png'
 import bannerImg from '../../assets/images/banner.png'
 
 const Banner = () => (
-  <Container>
-    <Imagem style={{ backgroundImage: `url(${bannerImg})` }}>
-      <Logo src={logo} alt="efood" />
-      <Titulo>Viva experiências gastronômicas no conforto da sua casa</Titulo>
-    </Imagem>
-  </Container>
+  <S.Container>
+    <S.Imagem style={{ backgroundImage: `url(${bannerImg})` }}>
+      <S.Logo src={LogoImg} alt="efood" />
+      <S.Titulo>
+        Viva experiências gastronômicas no conforto da sua casa
+      </S.Titulo>
+    </S.Imagem>
+  </S.Container>
 )
 
 export default Banner

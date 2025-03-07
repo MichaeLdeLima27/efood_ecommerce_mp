@@ -9,6 +9,7 @@ export const Colors = {
   lightPink: '#FFEBD9',
   green: '#10AC84',
   background: '#FFF8F2',
+  warning: '#FFEBD9',
   headerBackground: 'rgba(230, 103, 103, 0.05)'
 }
 

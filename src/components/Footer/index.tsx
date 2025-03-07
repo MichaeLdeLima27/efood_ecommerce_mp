@@ -1,36 +1,36 @@
-import { Container, SocialLinks, SocialIcon, FooterText, Logo } from './styles'
-
-import twitter from '../../assets/images/twitter.png'
-import facebook from '../../assets/images/facebook.png'
-import instagram from '../../assets/images/instagram.png'
+import * as S from './styles'
 import logo from '../../assets/images/logo.svg'
+import instagram from '../../assets/images/instagram.png'
+import facebook from '../../assets/images/facebook.png'
+import twitter from '../../assets/images/twitter.png'
 import { Link } from 'react-router-dom'
+
 const Footer = () => (
-  <Container>
+  <S.Container>
     <div className="container">
-      <Logo>
+      <S.Logo>
         <Link to="/">
           <img src={logo} alt="E-food" />
         </Link>
-      </Logo>
-      <SocialLinks>
-        <SocialIcon href="#" title="Instagram">
+      </S.Logo>
+      <S.SocialLinks>
+        <S.SocialIcon href="#" title="Instagram">
           <img src={instagram} alt="Instagram" />
-        </SocialIcon>
-        <SocialIcon href="#" title="Facebook">
+        </S.SocialIcon>
+        <S.SocialIcon href="#" title="Facebook">
           <img src={facebook} alt="Facebook" />
-        </SocialIcon>
-        <SocialIcon href="#" title="Twitter">
+        </S.SocialIcon>
+        <S.SocialIcon href="#" title="Twitter">
           <img src={twitter} alt="Twitter" />
-        </SocialIcon>
-      </SocialLinks>
-      <FooterText>
+        </S.SocialIcon>
+      </S.SocialLinks>
+      <S.FooterText>
         A efood é uma plataforma para divulgação de estabelecimentos, a
         responsabilidade pela entrega, qualidade dos produtos é toda do
         estabelecimento contratado.
-      </FooterText>
+      </S.FooterText>
     </div>
-  </Container>
+  </S.Container>
 )
 
 export default Footer

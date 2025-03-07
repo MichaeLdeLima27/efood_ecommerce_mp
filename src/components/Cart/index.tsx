@@ -1,35 +1,85 @@
+import { useState, useEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store'
-import { closeCart, removeItem, getTotalPrice } from '../../store/reducers/cart'
-import * as S from './styles'
+import {
+  closeCart,
+  removeItem,
+  getTotalPrice,
+  openCheckout
+} from '../../store/reducers/cart'
 import trashIcon from '../../assets/images/lixeira.png'
 import closeIcon from '../../assets/images/close.png'
+import * as S from './styles'
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootState) => state.cart)
+  const [animate, setAnimate] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
+  const [removingItems, setRemovingItems] = useState<Record<number, boolean>>(
+    {}
+  )
   const dispatch = useDispatch()
+  const animationTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+  // Handle cart visibility and animation
+  useEffect(() => {
+    if (isOpen) {
+      // Cart opened - show immediately and animate in
+      setIsVisible(true)
+      document.body.style.overflow = 'hidden'
+
+      // Start animation in next frame for smooth transition
+      const timer = setTimeout(() => {
+        setAnimate(true)
+      }, 10)
+
+      return () => clearTimeout(timer)
+    } else {
+      // Cart closed - animate out but don't hide yet
+      setAnimate(false)
+      document.body.style.overflow = ''
+
+      // Hide after animation completes
+      if (isVisible) {
+        animationTimeoutRef.current = setTimeout(() => {
+          setIsVisible(false)
+        }, 300)
+
+        return () => {
+          if (animationTimeoutRef.current) {
+            clearTimeout(animationTimeoutRef.current)
+          }
+        }
+      }
+    }
+  }, [isOpen, isVisible])
 
   const handleCloseCart = () => {
+    // Just dispatch close - the effect will handle animation
     dispatch(closeCart())
   }
 
   const handleRemoveItem = (id: number) => {
-    dispatch(removeItem(id))
+    setRemovingItems((prev) => ({ ...prev, [id]: true }))
+    setTimeout(() => {
+      dispatch(removeItem(id))
+      setRemovingItems((prev) => ({ ...prev, [id]: false }))
+    }, 500)
   }
 
   const handleCheckout = () => {
-    //  to the checkout page
-    console.log('Proceed to checkout')
+    dispatch(openCheckout())
   }
 
-  if (!isOpen) {
+  // Only render if cart should be visible
+  if (!isVisible) {
     return null
   }
 
   return (
-    <S.CartContainer>
-      <S.CartOverlay onClick={handleCloseCart} />
-      <S.CartContent>
+    <S.CartContainer animate={animate}>
+      <S.CartOverlay onClick={handleCloseCart} animate={animate} />
+      <S.CartContent animate={animate}>
         <S.CloseButton onClick={handleCloseCart}>
           <img src={closeIcon} alt="Fechar" />
         </S.CloseButton>
@@ -39,7 +89,7 @@ const Cart = () => {
         ) : (
           <>
             {items.map((item) => (
-              <S.CartItem key={item.id}>
+              <S.CartItem key={item.id} removing={removingItems[item.id]}>
                 <S.CartItemContent>
                   <S.ItemImage src={item.foto} alt={item.nome} />
                   <S.ItemInfo>

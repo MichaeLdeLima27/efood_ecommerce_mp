@@ -1,20 +1,26 @@
 import styled from 'styled-components'
 import { Colors, breakpoints } from '../../styles'
 
-export const Container = styled.div`
+type AnimatedProps = {
+  animate: boolean
+}
+
+export const Container = styled.div<AnimatedProps>`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  background-color: rgba(0, 0, 0, ${({ animate }) => (animate ? '0.8' : '0')});
+  z-index: 970;
+  opacity: ${({ animate }) => (animate ? 1 : 0)};
+  transition: background-color 0.3s ease, opacity 0.3s ease;
 `
 
-export const ModalContent = styled.div`
+export const ModalContent = styled.div<AnimatedProps>`
   background-color: ${Colors.mainPink};
   padding: 32px;
   border-radius: 8px;
@@ -23,6 +29,9 @@ export const ModalContent = styled.div`
   max-width: 1024px;
   display: flex;
   gap: 24px;
+  transform: ${({ animate }) => (animate ? 'scale(1)' : 'scale(0.9)')};
+  opacity: ${({ animate }) => (animate ? 1 : 0)};
+  transition: transform 0.3s ease, opacity 0.3s ease;
 
   @media (max-width: ${breakpoints.desktop}) {
     max-width: 80%;
@@ -40,17 +49,37 @@ export const ModalContent = styled.div`
   }
 `
 
-export const ModalImage = styled.img`
+export const ImageContainer = styled.div`
+  position: relative;
   width: 280px;
   height: 280px;
-  object-fit: cover;
   border-radius: 4px;
+  overflow: hidden;
 
   @media (max-width: ${breakpoints.tablet}) {
     width: 100%;
     max-width: 280px;
     margin-bottom: 16px;
   }
+`
+
+export const LoaderWrapper = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
+export const ModalImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 4px;
+  transition: opacity 0.3s ease;
 `
 
 export const ProductInfo = styled.div`
@@ -114,4 +143,17 @@ export const CloseButton = styled.button`
   &:hover {
     transform: scale(1.1);
   }
+`
+
+export const ErrorMessage = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: ${Colors.white};
+  font-size: 14px;
+  text-align: center;
+  padding: 16px;
 `

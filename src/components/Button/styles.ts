@@ -20,7 +20,17 @@ export const ButtonContainer = styled.button<{
     font-size: 14px;
     cursor: pointer;
     border-radius: 4px;
-    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
   `
       : `
     width: 82px;
@@ -33,6 +43,17 @@ export const ButtonContainer = styled.button<{
     font-weight: bold;
     border-radius: 1px;
     cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    &:active {
+      transform: translateY(0);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    }
   `}
 `
 
@@ -45,4 +66,17 @@ export const ButtonLink = styled(Link)`
   padding: 8px 8px;
   text-decoration: none;
   border-radius: 8px;
+  display: inline-block;
+  transition: all 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: ${Colors.mainPink};
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
 `
