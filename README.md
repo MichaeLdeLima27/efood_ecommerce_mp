@@ -1,5 +1,49 @@
 # Max React Template - Rapid, Scalable Web Development Starter
 
+A responsive food e-commerce platform built with React, Redux, TypeScript, Styled Components, Fake Store API. This application allows users to browse restaurants, view menu items, add items to the cart, and complete the checkout process.
+
+## 🖼️ Project Demo
+
+![Project Demo](public/demo.png)
+
+## Live Demo On Vercel
+
+Check out the live demo: [Food E-commerce](https://food-ecommerce-six.vercel.app/)
+
+## Demo Preview
+
+![Demo GIF](public/FoodEcommerceDemo.gif)
+
+## Features
+
+- Restaurant listing and filtering
+- Detailed restaurant view with menu items
+- Add to cart functionality with quantity control
+- Smooth cart animations
+- Multi-step checkout process:
+  - Address information
+  - Payment details (with card validation)
+  - Order confirmation
+- Responsive design for all devices
+- State management with Redux
+- Form validation
+
+## Technologies Used
+
+- React.js
+- TypeScript
+- Redux & Redux Toolkit
+- Styled Components
+- React Router
+- Formik
+
+## How to Run
+
+1. Clone this repository
+2. Install dependencies with `npm install`
+3. Run the development server with `npm start`
+4. Access the application at `http://localhost:3000`
+
 ## 🌟 Why Use This Template?
 
 ### 🚀 Accelerate Your Development
@@ -21,10 +65,6 @@ This template is designed to jumpstart your React projects with a robust, produc
 - **Performance Optimized**: Lightweight and fast
 - **Scalable Structure**: Easily grow your application
 - **Modern Tech Stack**: Leveraging latest React and TypeScript features
-
-## 🖼️ Project Demo
-
-![Project Demo](https://github.com/maxh33/food-ecommerce/blob/main/public/demo.png)
 
 ## 🚀 Quick Start
 
@@ -70,6 +110,15 @@ This template is designed to jumpstart your React projects with a robust, produc
 ### Additional Libraries
 - **Web Vitals**: Performance measurement
 - **React Testing Library**: Testing utilities
+
+## Additional Images
+
+
+![Details on Tablet](public/detailsTablet.png)
+![Details on Mobile](public/deatilsMobile.png)
+![Modal on Tablet](public/tabletModal.png)
+![Cart on Tablet](public/tabletCart.png)
+![Cart Conclusion Animation](public/conclusion.png)
 
 ## 🔧 Customization Guide
 
@@ -119,46 +168,11 @@ This template is designed to jumpstart your React projects with a robust, produc
 - `routes.tsx` - Route definitions
 
 
-## Getting Started with Create React App
+## Like it? Star the project and Follow me!
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+LinkedIn: [https://www.linkedin.com/in/maxhaider/](https://www.linkedin.com/in/maxhaider/)
 
-## Available Scripts
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
 ## Learn More
 
@@ -189,3 +203,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+

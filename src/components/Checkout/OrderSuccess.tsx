@@ -1,5 +1,8 @@
 import { useEffect } from 'react'
 import { useReward } from 'react-rewards'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { clear } from '../../store/reducers/cart'
 
 import * as S from './styles'
 
@@ -9,6 +12,8 @@ interface OrderSuccessProps {
 }
 
 const OrderSuccess = ({ orderId, onFinish }: OrderSuccessProps) => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const isDemo = orderId.startsWith('DEMO-')
   const { reward, isAnimating } = useReward(
     'orderSuccessConfetti',
@@ -30,6 +35,17 @@ const OrderSuccess = ({ orderId, onFinish }: OrderSuccessProps) => {
 
     return () => clearTimeout(timer)
   }, [reward])
+
+  // Clear cart when OrderSuccess mounts
+  useEffect(() => {
+    dispatch(clear())
+  }, [dispatch])
+
+  const handleBackToHome = () => {
+    dispatch(clear())
+    onFinish()
+    navigate('/')
+  }
 
   return (
     <S.SuccessContainer>
@@ -79,7 +95,7 @@ const OrderSuccess = ({ orderId, onFinish }: OrderSuccessProps) => {
         gastronômica. Bom apetite!
       </S.OrderMessage>
 
-      <S.Button onClick={onFinish} disabled={isAnimating}>
+      <S.Button disabled={isAnimating} onClick={handleBackToHome}>
         Concluir
       </S.Button>
     </S.SuccessContainer>
