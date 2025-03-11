@@ -1,4 +1,4 @@
-# Max React Template - Rapid, Scalable Web Development Starter
+#React Template - Rapid, Scalable Web Development Starter
 
 A responsive food e-commerce platform built with React, Redux, TypeScript, Styled Components, Fake Store API. This application allows users to browse restaurants, view menu items, add items to the cart, and complete the checkout process.
 
@@ -170,7 +170,7 @@ This template is designed to jumpstart your React projects with a robust, produc
 
 ## Like it? Star the project and Follow me!
 
-LinkedIn: [https://www.linkedin.com/in/maxhaider/](https://www.linkedin.com/in/maxhaider/)
+LinkedIn: [https://www.linkedin.com/in/maxhaider/](https://www.linkedin.com/in/michelap19/)
 
 
 
